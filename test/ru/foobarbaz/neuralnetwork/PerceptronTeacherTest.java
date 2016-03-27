@@ -5,7 +5,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.foobarbaz.neuralnetwork.impl.Perceptron;
 import ru.foobarbaz.neuralnetwork.impl.Teacher;
 
 import java.util.Arrays;
@@ -20,74 +19,74 @@ public class PerceptronTeacherTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        Teacher teacher=new Teacher();
-        teacher.setUp();
-        network=teacher.getNeuralNetwork();
+        Teacher teacher = new Teacher();
+        teacher.study(10000);
+        network = teacher.getNeuralNetwork();
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(
                 new Object[]{new double[]{
-                        0,0,1,
-                        0,1,1,
-                        0,0,1,
-                        0,0,1,
-                        0,0,1}, new double[]{0,1,0,0,0,0,0,0,0,0}},
+                        0, 0, 1,
+                        0, 1, 1,
+                        0, 0, 1,
+                        0, 0, 1,
+                        0, 0, 1}, new double[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0}},
                 new Object[]{new double[]{
-                        1,1,1,
-                        0,0,1,
-                        0,1,0,
-                        1,0,0,
-                        1,1,1}, new double[]{0,0,1,0,0,0,0,0,0,0}},
+                        1, 1, 1,
+                        0, 0, 1,
+                        0, 1, 0,
+                        1, 0, 0,
+                        1, 1, 1}, new double[]{0, 0, 1, 0, 0, 0, 0, 0, 0, 0}},
                 new Object[]{new double[]{
-                        1,1,1,
-                        0,0,1,
-                        1,1,1,
-                        0,0,1,
-                        1,1,1}, new double[]{0,0,0,1,0,0,0,0,0,0}},
+                        1, 1, 1,
+                        0, 0, 1,
+                        1, 1, 1,
+                        0, 0, 1,
+                        1, 1, 1}, new double[]{0, 0, 0, 1, 0, 0, 0, 0, 0, 0}},
                 new Object[]{new double[]{
-                        1,0,1,
-                        1,0,1,
-                        1,1,1,
-                        0,0,1,
-                        0,0,1}, new double[]{0,0,0,0,1,0,0,0,0,0}},
+                        1, 0, 1,
+                        1, 0, 1,
+                        1, 1, 1,
+                        0, 0, 1,
+                        0, 0, 1}, new double[]{0, 0, 0, 0, 1, 0, 0, 0, 0, 0}},
                 new Object[]{new double[]{
-                        1,1,1,
-                        1,0,0,
-                        1,1,1,
-                        0,0,1,
-                        1,1,1}, new double[]{0,0,0,0,0,1,0,0,0,0}},
+                        1, 1, 1,
+                        1, 0, 0,
+                        1, 1, 1,
+                        0, 0, 1,
+                        1, 1, 1}, new double[]{0, 0, 0, 0, 0, 1, 0, 0, 0, 0}},
                 new Object[]{new double[]{
-                        1,1,1,
-                        1,0,0,
-                        1,1,1,
-                        1,0,1,
-                        1,1,1}, new double[]{0,0,0,0,0,0,1,0,0,0}},
+                        1, 1, 1,
+                        1, 0, 0,
+                        1, 1, 1,
+                        1, 0, 1,
+                        1, 1, 1}, new double[]{0, 0, 0, 0, 0, 0, 1, 0, 0, 0}},
                 new Object[]{new double[]{
-                        1,1,1,
-                        0,0,1,
-                        0,0,1,
-                        0,1,0,
-                        0,1,0}, new double[]{0,0,0,0,0,0,0,1,0,0}},
+                        1, 1, 1,
+                        0, 0, 1,
+                        0, 0, 1,
+                        0, 1, 0,
+                        0, 1, 0}, new double[]{0, 0, 0, 0, 0, 0, 0, 1, 0, 0}},
                 new Object[]{new double[]{
-                        1,1,1,
-                        1,0,1,
-                        1,1,1,
-                        1,0,1,
-                        1,1,1}, new double[]{0,0,0,0,0,0,0,0,1,0}},
+                        1, 1, 1,
+                        1, 0, 1,
+                        1, 1, 1,
+                        1, 0, 1,
+                        1, 1, 1}, new double[]{0, 0, 0, 0, 0, 0, 0, 0, 1, 0}},
                 new Object[]{new double[]{
-                        1,1,1,
-                        1,0,1,
-                        1,1,1,
-                        0,0,1,
-                        1,1,1}, new double[]{0,0,0,0,0,0,0,0,0,1}},
+                        1, 1, 1,
+                        1, 0, 1,
+                        1, 1, 1,
+                        0, 0, 1,
+                        1, 1, 1}, new double[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 1}},
                 new Object[]{new double[]{
-                        1,1,1,
-                        1,0,1,
-                        1,0,1,
-                        1,0,1,
-                        1,1,1}, new double[]{1,0,0,0,0,0,0,0,0,0}}
+                        1, 1, 1,
+                        1, 0, 1,
+                        1, 0, 1,
+                        1, 0, 1,
+                        1, 1, 1}, new double[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
 
         );
     }
@@ -100,20 +99,16 @@ public class PerceptronTeacherTest {
     @Test
     public void process() throws Exception {
         System.out.println("Input: " + Arrays.toString(input));
-
-        boolean failed=false;
         double[] actualOutput = network.process(input);
 
-        System.out.println("Input: " + Arrays.toString(actualOutput));
-        for(int i=0;i<actualOutput.length;i++){
-            if(Math.abs(actualOutput[i]-expectedOutput[i])>MAX_ERROR)
-                failed=true;
-
-            System.out.println("Error: " + Math.abs(actualOutput[i]-expectedOutput[i]));
+        boolean failed = false;
+        for (int i = 0; i < actualOutput.length; i++) {
+            if (Math.abs(actualOutput[i] - expectedOutput[i]) > MAX_ERROR) {
+                failed = true;
+            }
+            System.out.format("Error[%d]: %f", i, Math.abs(actualOutput[i] - expectedOutput[i]));
         }
 
-        System.out.println("Expected: " + expectedOutput);
-        System.out.println("Actual: " + actualOutput);
         Assert.assertTrue(!failed);
     }
 }

@@ -1,7 +1,6 @@
 package ru.foobarbaz.neuralnetwork;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +9,6 @@ import ru.foobarbaz.neuralnetwork.impl.Perceptron;
 
 import java.util.Arrays;
 import java.util.Collection;
-
-import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class PerceptronXorTest {
