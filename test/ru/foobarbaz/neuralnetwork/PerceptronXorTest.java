@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class PerceptronXorTest {
 
     private static NeuralNetwork neuralNetwork;
-    private static final double MAX_ERROR = 0.3;
+    private static final double MAX_ERROR = 0.1;
 
     private double[] input;
     private double expectedOutput;
@@ -25,10 +25,12 @@ public class PerceptronXorTest {
     @BeforeClass
     public static void setUp() throws Exception {
         neuralNetwork= new Perceptron(new int[]{2, 3, 1});
-        for (Object[] params : data()) {
-            double[] input = (double[]) params[0];
-            double expectedOutput = (double) params[1];
-            neuralNetwork.study(input, new double[]{expectedOutput});
+        for (int i = 0; i < 10000; i++) {
+            for (Object[] params : data()) {
+                double[] input = (double[]) params[0];
+                double expectedOutput = (double) params[1];
+                neuralNetwork.study(input, new double[]{expectedOutput});
+            }
         }
     }
 

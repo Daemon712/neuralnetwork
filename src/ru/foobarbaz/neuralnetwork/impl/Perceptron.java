@@ -3,9 +3,10 @@ package ru.foobarbaz.neuralnetwork.impl;
 import ru.foobarbaz.neuralnetwork.NeuralNetwork;
 
 public class Perceptron implements NeuralNetwork {
-    double[][][] weights;
-    double[][] neurons;
-    double[][] errors;
+    private static final double STUDYING_POWER = 3;
+    private double[][][] weights;
+    private double[][] neurons;
+    private double[][] errors;
 
     public Perceptron(int[] neuronsOnLayers){
         if (neuronsOnLayers.length <= 2) {
@@ -25,18 +26,8 @@ public class Perceptron implements NeuralNetwork {
         return getOutput();
     }
 
-    /**
-     * Cyka blyat, suka blyat,
-     * idi nahooi
-     * <p>cyka blyat</p>
-     * @param input -huinput
-     * @param expectedOutput- huyautput
-     * @deprecated
-     */
     @Override
     public void study(double[] input, double[] expectedOutput) {
-        //TODO Daemon0712, go CS
-
         if (input.length != neurons[0].length) {
             throw new IllegalArgumentException("The number of input values must be equal to the number of neurons in the first layer");
         }
@@ -51,7 +42,7 @@ public class Perceptron implements NeuralNetwork {
             this.errors[2][i]=errors[i];
             double[] inputLinks=weights[1][i];
             for(int j=0;j<inputLinks.length;j++){
-                double weightDelta=errors[i]*neurons[1][j];
+                double weightDelta=errors[i]*neurons[1][j]* STUDYING_POWER;
                 weights[1][i][j]=weights[1][i][j]+weightDelta;
             }
         }
@@ -64,12 +55,10 @@ public class Perceptron implements NeuralNetwork {
             }
             double error=errorSum*getDerValues(1,i);
             for(int j=0; j<neurons[0].length;j++){
-                double weightDelte=error*neurons[0][j];
-                weights[0][i][j]=weights[0][i][j]+weightDelte;
+                double weightDelta=error*neurons[0][j] * STUDYING_POWER;
+                weights[0][i][j]=weights[0][i][j]+weightDelta;
             }
         }
-
-
     }
 
     private double getDerValues(int layer, int neuron){
@@ -79,27 +68,13 @@ public class Perceptron implements NeuralNetwork {
             sum+=inputLinks[i]*neurons[layer-1][i];
         }
         return derValue(sum);
-    }/*
-    private double[] getInputLinks(int layer, int neuron){
-        double[] res=new double[weights[layer-1].length];
-        for(int i=0;i<res.length;i++){
-            res[i]=weights[layer-1][i][neuron];
-        }
-        return res;
-    }*/
-    /**
-     * Huynu kakuu-to schitaem blyat
-     * @param value- pizdec, zakinuli
-     * @return
-     */
+    }
+
     private double derValue(double value){
-        double func = process(value);
+        double func = activate(value);
         return func*(1-func);
     }
 
-    private double process(double value) {
-        return 1/(1+Math.pow(Math.E, -value));
-    }
     /**
      * Creates array of layers with neurons.
      * @param neuronsOnLayers array with numbers of neurons in layers
@@ -111,10 +86,6 @@ public class Perceptron implements NeuralNetwork {
         }
     }
 
-    /**
-     * Create array of errors for neurons
-     * @param neuronsOnLayers array with numbers of neurons in layers
-     */
     private void initErrors(int[] neuronsOnLayers){
         errors = new double[neuronsOnLayers.length][];
         for (int i = 0; i < neuronsOnLayers.length; i++) {
