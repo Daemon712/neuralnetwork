@@ -60,7 +60,7 @@ public class Perceptron implements NeuralNetwork {
             double errorSum=0;
 
             for(int j=0;j<neurons[2].length;j++){
-                errorSum += weights[0][j][i]*this.errors[1][i];
+                errorSum += weights[1][j][i]*this.errors[2][j];
             }
             double error=errorSum*getDerValues(1,i);
             for(int j=0; j<neurons[0].length;j++){
@@ -74,9 +74,9 @@ public class Perceptron implements NeuralNetwork {
 
     private double getDerValues(int layer, int neuron){
         double sum=0;
-        double[] inputLinks=weights[layer][neuron];
+        double[] inputLinks=weights[layer-1][neuron];
         for(int i=0;i<inputLinks.length;i++){
-            sum+=inputLinks[i]*neurons[layer+1][i];
+            sum+=inputLinks[i]*neurons[layer-1][i];
         }
         return derValue(sum);
     }/*
