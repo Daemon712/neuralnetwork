@@ -32,7 +32,7 @@ public class Teacher {
         inputSet[2] = new double[]{
                 1, 1, 1,
                 0, 0, 1,
-                0, 1, 0,
+                1, 1, 1,
                 1, 0, 0,
                 1, 1, 1};
         inputSet[3] = new double[]{
