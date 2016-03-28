@@ -5,13 +5,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.foobarbaz.neuralnetwork.impl.Teacher;
+import ru.foobarbaz.neuralnetwork.impl.DigitTeacher;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class PerceptronTeacherTest {
+public class PerceptronDigitTeacherTest {
     private static final double MAX_ERROR = 0.1;
     private static NeuralNetwork network;
     private double[] input;
@@ -19,8 +19,8 @@ public class PerceptronTeacherTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        Teacher teacher = new Teacher();
-        teacher.study(10000);
+        DigitTeacher teacher = new DigitTeacher();
+        teacher.study(1000);
         network = teacher.getNeuralNetwork();
     }
 
@@ -91,7 +91,7 @@ public class PerceptronTeacherTest {
         );
     }
 
-    public PerceptronTeacherTest(double[] input, double[] expectedOutput) {
+    public PerceptronDigitTeacherTest(double[] input, double[] expectedOutput) {
         this.input = input;
         this.expectedOutput = expectedOutput;
     }
@@ -106,7 +106,7 @@ public class PerceptronTeacherTest {
             if (Math.abs(actualOutput[i] - expectedOutput[i]) > MAX_ERROR) {
                 failed = true;
             }
-            System.out.format("Error[%d]: %f", i, Math.abs(actualOutput[i] - expectedOutput[i]));
+            System.out.format("Error[%d]: %f\n", i, Math.abs(actualOutput[i] - expectedOutput[i]));
         }
 
         Assert.assertTrue(!failed);

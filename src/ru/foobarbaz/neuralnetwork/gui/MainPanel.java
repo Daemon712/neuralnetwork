@@ -1,7 +1,7 @@
 package ru.foobarbaz.neuralnetwork.gui;
 
 import ru.foobarbaz.neuralnetwork.NeuralNetwork;
-import ru.foobarbaz.neuralnetwork.impl.Teacher;
+import ru.foobarbaz.neuralnetwork.impl.DigitTeacher;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +34,7 @@ public class MainPanel extends JPanel {
     }
 
     private void initNetwork(){
-        Teacher teacher = new Teacher();
+        DigitTeacher teacher = new DigitTeacher();
         teacher.study(1000);
         neuralNetwork = teacher.getNeuralNetwork();
     }

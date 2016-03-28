@@ -2,12 +2,12 @@ package ru.foobarbaz.neuralnetwork.impl;
 
 import ru.foobarbaz.neuralnetwork.NeuralNetwork;
 
-public class Teacher {
+public class DigitTeacher {
     private double[][] inputSet;
     private double[][] exceptedSet;
     private NeuralNetwork neuralNetwork;
 
-    public Teacher() {
+    public DigitTeacher() {
         neuralNetwork = new Perceptron(new int[]{15, 12, 10});
         initInputSet();
         initExceptedSet();
