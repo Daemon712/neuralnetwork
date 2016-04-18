@@ -1,4 +1,4 @@
-package ru.foobarbaz.neuralnetwork.impl;
+package ru.foobarbaz.neuralnetwork.network;
 
 import ru.foobarbaz.neuralnetwork.NeuralNetwork;
 
@@ -21,9 +21,6 @@ public abstract class AbstractPerceptron implements NeuralNetwork {
         calculate();
         return getOutput();
     }
-
-    @Override
-    public abstract void study(double[] input, double[] expectedOutput);
 
     /**
      * Creates array of layers with neurons.

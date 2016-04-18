@@ -1,11 +1,13 @@
-package ru.foobarbaz.neuralnetwork.impl;
+package ru.foobarbaz.neuralnetwork.teacher;
 
 import ru.foobarbaz.neuralnetwork.NeuralNetwork;
+import ru.foobarbaz.neuralnetwork.StudyingWithTeacherNetwork;
+import ru.foobarbaz.neuralnetwork.network.Perceptron;
 
 public class DigitTeacher {
     private double[][] inputSet;
     private double[][] exceptedSet;
-    private NeuralNetwork neuralNetwork;
+    private StudyingWithTeacherNetwork neuralNetwork;
 
     public DigitTeacher() {
         neuralNetwork = new Perceptron(new int[]{15, 12, 10});
@@ -99,7 +101,7 @@ public class DigitTeacher {
         exceptedSet[9] = new double[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
     }
 
-    public NeuralNetwork getNeuralNetwork() {
+    public StudyingWithTeacherNetwork getNeuralNetwork() {
         return neuralNetwork;
     }
 

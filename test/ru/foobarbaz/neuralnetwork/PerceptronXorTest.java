@@ -5,7 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.foobarbaz.neuralnetwork.impl.Perceptron;
+import ru.foobarbaz.neuralnetwork.network.Perceptron;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,7 +13,7 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class PerceptronXorTest {
 
-    private static NeuralNetwork neuralNetwork;
+    private static StudyingWithTeacherNetwork neuralNetwork;
     private static final double MAX_ERROR = 0.1;
 
     private double[] input;

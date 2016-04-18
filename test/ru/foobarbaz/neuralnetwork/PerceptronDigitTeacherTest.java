@@ -5,7 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.foobarbaz.neuralnetwork.impl.DigitTeacher;
+import ru.foobarbaz.neuralnetwork.teacher.DigitTeacher;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,7 +13,7 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class PerceptronDigitTeacherTest {
     private static final double MAX_ERROR = 0.1;
-    private static NeuralNetwork network;
+    private static StudyingWithTeacherNetwork network;
     private double[] input;
     private double[] expectedOutput;
 
