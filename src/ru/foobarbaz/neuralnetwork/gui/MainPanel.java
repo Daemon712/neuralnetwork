@@ -1,6 +1,6 @@
 package ru.foobarbaz.neuralnetwork.gui;
 
-import ru.foobarbaz.neuralnetwork.NeuralNetwork;
+import ru.foobarbaz.neuralnetwork.network.NeuralNetwork;
 import ru.foobarbaz.neuralnetwork.teacher.DigitTeacher;
 
 import javax.swing.*;

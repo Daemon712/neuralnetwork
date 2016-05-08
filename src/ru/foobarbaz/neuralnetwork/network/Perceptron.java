@@ -1,7 +1,5 @@
 package ru.foobarbaz.neuralnetwork.network;
 
-import ru.foobarbaz.neuralnetwork.StudyingWithTeacherNetwork;
-
 public class Perceptron extends AbstractPerceptron implements StudyingWithTeacherNetwork {
     private static final double STUDYING_POWER = 3;
     private double[][] errors;

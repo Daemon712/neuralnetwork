@@ -1,7 +1,5 @@
 package ru.foobarbaz.neuralnetwork.network;
 
-import ru.foobarbaz.neuralnetwork.NeuralNetwork;
-
 public abstract class AbstractPerceptron implements NeuralNetwork {
     protected double[][][] weights;
     protected double[][] neurons;

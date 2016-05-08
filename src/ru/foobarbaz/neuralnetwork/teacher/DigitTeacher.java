@@ -1,7 +1,6 @@
 package ru.foobarbaz.neuralnetwork.teacher;
 
-import ru.foobarbaz.neuralnetwork.NeuralNetwork;
-import ru.foobarbaz.neuralnetwork.StudyingWithTeacherNetwork;
+import ru.foobarbaz.neuralnetwork.network.StudyingWithTeacherNetwork;
 import ru.foobarbaz.neuralnetwork.network.Perceptron;
 
 public class DigitTeacher {

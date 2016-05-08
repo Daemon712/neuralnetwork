@@ -5,6 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import ru.foobarbaz.neuralnetwork.network.StudyingWithTeacherNetwork;
 import ru.foobarbaz.neuralnetwork.teacher.DigitTeacher;
 
 import java.util.Arrays;
