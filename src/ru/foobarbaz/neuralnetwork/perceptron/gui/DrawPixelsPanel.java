@@ -1,4 +1,4 @@
-package ru.foobarbaz.neuralnetwork.gui.perceptron;
+package ru.foobarbaz.neuralnetwork.perceptron.gui;
 
 import javax.swing.*;
 import javax.swing.border.Border;

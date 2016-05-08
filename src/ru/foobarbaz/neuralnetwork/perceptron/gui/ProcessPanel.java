@@ -1,6 +1,6 @@
-package ru.foobarbaz.neuralnetwork.gui.perceptron;
+package ru.foobarbaz.neuralnetwork.perceptron.gui;
 
-import ru.foobarbaz.neuralnetwork.network.NeuralNetwork;
+import ru.foobarbaz.neuralnetwork.perceptron.logic.Perceptron;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,10 +13,10 @@ public class ProcessPanel extends JPanel implements ActionListener {
 
     private JLabel outputLabel;
     private DrawPixelsPanel drawPixelsPanel;
-    private NeuralNetwork neuralNetwork;
+    private Perceptron perceptron;
 
-    public ProcessPanel(NeuralNetwork neuralNetwork) {
-        this.neuralNetwork = neuralNetwork;
+    public ProcessPanel(Perceptron perceptron) {
+        this.perceptron = perceptron;
 
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 
@@ -85,7 +85,7 @@ public class ProcessPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         double[] input = convertData();
-        double[] output = neuralNetwork.process(input);
+        double[] output = perceptron.process(input);
         outputLabel.setText(formatOutput(output));
     }
 

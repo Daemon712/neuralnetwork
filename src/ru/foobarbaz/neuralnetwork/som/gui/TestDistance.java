@@ -1,8 +1,8 @@
-package ru.foobarbaz.neuralnetwork.gui.kohonen;
+package ru.foobarbaz.neuralnetwork.som.gui;
 
-import ru.foobarbaz.neuralnetwork.distance.ChebyshevDistance;
-import ru.foobarbaz.neuralnetwork.distance.EuclideanDistance;
-import ru.foobarbaz.neuralnetwork.distance.ManhattanDistance;
+import ru.foobarbaz.neuralnetwork.som.logic.distance.ChebyshevDistance;
+import ru.foobarbaz.neuralnetwork.som.logic.distance.EuclideanDistance;
+import ru.foobarbaz.neuralnetwork.som.logic.distance.ManhattanDistance;
 
 import javax.swing.*;
 import java.awt.*;

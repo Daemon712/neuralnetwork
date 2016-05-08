@@ -1,14 +1,14 @@
-package ru.foobarbaz.neuralnetwork.gui.perceptron;
+package ru.foobarbaz.neuralnetwork.perceptron.gui;
 
-import ru.foobarbaz.neuralnetwork.network.NeuralNetwork;
-import ru.foobarbaz.neuralnetwork.teacher.DigitTeacher;
+import ru.foobarbaz.neuralnetwork.perceptron.logic.Perceptron;
+import ru.foobarbaz.neuralnetwork.perceptron.logic.DigitTeacher;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainPanel extends JPanel {
     private JTabbedPane tabbedPane;
-    private NeuralNetwork neuralNetwork;
+    private Perceptron perceptron;
 
     public MainPanel() {
         super(new GridLayout(1, 1));
@@ -20,7 +20,7 @@ public class MainPanel extends JPanel {
 //        tabbedPane.addTab("File", null, filePanel, null);
 //        tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
-        JComponent processPanel = new ProcessPanel(neuralNetwork);
+        JComponent processPanel = new ProcessPanel(perceptron);
         tabbedPane.addTab("Process", null, processPanel, null);
 
         //TODO
@@ -36,7 +36,7 @@ public class MainPanel extends JPanel {
     private void initNetwork(){
         DigitTeacher teacher = new DigitTeacher();
         teacher.study(1000);
-        neuralNetwork = teacher.getNeuralNetwork();
+        perceptron = teacher.getPerceptron();
     }
 
     public static void main(String[] args) {

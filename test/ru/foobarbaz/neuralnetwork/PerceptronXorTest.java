@@ -5,8 +5,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.foobarbaz.neuralnetwork.network.Perceptron;
-import ru.foobarbaz.neuralnetwork.network.StudyingWithTeacherNetwork;
+import ru.foobarbaz.neuralnetwork.perceptron.logic.Perceptron;
+import ru.foobarbaz.neuralnetwork.perceptron.logic.PerceptronImpl;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,7 +14,7 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class PerceptronXorTest {
 
-    private static StudyingWithTeacherNetwork neuralNetwork;
+    private static Perceptron perceptron;
     private static final double MAX_ERROR = 0.1;
 
     private double[] input;
@@ -22,12 +22,12 @@ public class PerceptronXorTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        neuralNetwork= new Perceptron(new int[]{2, 3, 1});
+        perceptron = new PerceptronImpl(new int[]{2, 3, 1});
         for (int i = 0; i < 10000; i++) {
             for (Object[] params : data()) {
                 double[] input = (double[]) params[0];
                 double expectedOutput = (double) params[1];
-                neuralNetwork.study(input, new double[]{expectedOutput});
+                perceptron.study(input, new double[]{expectedOutput});
             }
         }
     }
@@ -50,7 +50,7 @@ public class PerceptronXorTest {
     @Test
     public void process() throws Exception {
         System.out.println("Input: " + Arrays.toString(input));
-        double actualOutput = neuralNetwork.process(input)[0];
+        double actualOutput = perceptron.process(input)[0];
         double error = Math.abs(actualOutput - expectedOutput);
 
         System.out.println("Expected: " + expectedOutput);

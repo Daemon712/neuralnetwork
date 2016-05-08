@@ -1,6 +1,6 @@
-package ru.foobarbaz.neuralnetwork.distance;
+package ru.foobarbaz.neuralnetwork.som.logic.distance;
 
-import ru.foobarbaz.neuralnetwork.utils.ArraysHelper;
+import ru.foobarbaz.neuralnetwork.common.ArraysHelper;
 
 import java.util.function.BiFunction;
 

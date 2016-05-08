@@ -1,4 +1,4 @@
-package ru.foobarbaz.neuralnetwork.utils;
+package ru.foobarbaz.neuralnetwork.common;
 
 import java.util.function.BiFunction;
 import java.util.stream.DoubleStream;

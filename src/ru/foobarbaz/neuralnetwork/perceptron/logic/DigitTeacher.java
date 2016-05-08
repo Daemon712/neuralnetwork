@@ -1,15 +1,12 @@
-package ru.foobarbaz.neuralnetwork.teacher;
-
-import ru.foobarbaz.neuralnetwork.network.StudyingWithTeacherNetwork;
-import ru.foobarbaz.neuralnetwork.network.Perceptron;
+package ru.foobarbaz.neuralnetwork.perceptron.logic;
 
 public class DigitTeacher {
     private double[][] inputSet;
     private double[][] exceptedSet;
-    private StudyingWithTeacherNetwork neuralNetwork;
+    private Perceptron perceptron;
 
     public DigitTeacher() {
-        neuralNetwork = new Perceptron(new int[]{15, 12, 10});
+        perceptron = new PerceptronImpl(new int[]{15, 12, 10});
         initInputSet();
         initExceptedSet();
     }
@@ -17,7 +14,7 @@ public class DigitTeacher {
     public void study(int cycles) {
         for (int i = 0; i < cycles; i++) {
             for (int j = 0; j < inputSet.length; j++) {
-                neuralNetwork.study(inputSet[j], exceptedSet[j]);
+                perceptron.study(inputSet[j], exceptedSet[j]);
             }
         }
     }
@@ -100,8 +97,8 @@ public class DigitTeacher {
         exceptedSet[9] = new double[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
     }
 
-    public StudyingWithTeacherNetwork getNeuralNetwork() {
-        return neuralNetwork;
+    public Perceptron getPerceptron() {
+        return perceptron;
     }
 
 }

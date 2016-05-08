@@ -5,8 +5,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.foobarbaz.neuralnetwork.network.StudyingWithTeacherNetwork;
-import ru.foobarbaz.neuralnetwork.teacher.DigitTeacher;
+import ru.foobarbaz.neuralnetwork.perceptron.logic.Perceptron;
+import ru.foobarbaz.neuralnetwork.perceptron.logic.DigitTeacher;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,7 +14,7 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class PerceptronDigitTeacherTest {
     private static final double MAX_ERROR = 0.1;
-    private static StudyingWithTeacherNetwork network;
+    private static Perceptron perceptron;
     private double[] input;
     private double[] expectedOutput;
 
@@ -22,7 +22,7 @@ public class PerceptronDigitTeacherTest {
     public static void setUp() throws Exception {
         DigitTeacher teacher = new DigitTeacher();
         teacher.study(1000);
-        network = teacher.getNeuralNetwork();
+        perceptron = teacher.getPerceptron();
     }
 
     @Parameterized.Parameters
@@ -100,7 +100,7 @@ public class PerceptronDigitTeacherTest {
     @Test
     public void process() throws Exception {
         System.out.println("Input: " + Arrays.toString(input));
-        double[] actualOutput = network.process(input);
+        double[] actualOutput = perceptron.process(input);
 
         boolean failed = false;
         for (int i = 0; i < actualOutput.length; i++) {
