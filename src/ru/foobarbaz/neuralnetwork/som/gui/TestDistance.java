@@ -31,11 +31,11 @@ public class TestDistance extends JPanel {
             testDistance.resetPoints(value == null ? 1 : value);
         });
         JComboBox<Distance> functionsList = new JComboBox<>(new Distance[]{
-                new EuclideanDistance(),
                 new ManhattanDistance(),
-                new ChebyshevDistance(),
                 new MinkowskiDistance(1.5),
+                new EuclideanDistance(),
                 new MinkowskiDistance(8),
+                new ChebyshevDistance(),
         });
         functionsList.addActionListener(e -> {
             JComboBox cb = (JComboBox)e.getSource();
@@ -65,7 +65,7 @@ public class TestDistance extends JPanel {
     public TestDistance(int width, int height) {
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         initPoints(colors.length);
-        setDistanceFunction(new EuclideanDistance());
+        setDistanceFunction(new ManhattanDistance());
     }
 
     private void initPoints(int numOfPoints) {
