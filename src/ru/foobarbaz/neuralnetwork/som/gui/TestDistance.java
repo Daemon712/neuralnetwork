@@ -1,8 +1,6 @@
 package ru.foobarbaz.neuralnetwork.som.gui;
 
-import ru.foobarbaz.neuralnetwork.som.logic.distance.ChebyshevDistance;
-import ru.foobarbaz.neuralnetwork.som.logic.distance.EuclideanDistance;
-import ru.foobarbaz.neuralnetwork.som.logic.distance.ManhattanDistance;
+import ru.foobarbaz.neuralnetwork.som.logic.distance.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
-import java.util.function.BiFunction;
 
 public class TestDistance extends JPanel {
     public static void main(String[] args) {
@@ -33,14 +30,16 @@ public class TestDistance extends JPanel {
             Integer value = (Integer)spinner.getValue();
             testDistance.resetPoints(value == null ? 1 : value);
         });
-        JComboBox<BiFunction> functionsList = new JComboBox<>(new BiFunction[]{
+        JComboBox<Distance> functionsList = new JComboBox<>(new Distance[]{
                 new EuclideanDistance(),
                 new ManhattanDistance(),
                 new ChebyshevDistance(),
+                new MinkowskiDistance(1.5),
+                new MinkowskiDistance(8),
         });
         functionsList.addActionListener(e -> {
             JComboBox cb = (JComboBox)e.getSource();
-            BiFunction function = (BiFunction)cb.getSelectedItem();
+            Distance function = (Distance)cb.getSelectedItem();
             testDistance.setDistanceFunction(function);
         });
 
@@ -61,7 +60,7 @@ public class TestDistance extends JPanel {
     };
     private BufferedImage canvas;
     private Point[] points;
-    private BiFunction<double[], double[], Double> distanceFunction;
+    private Distance distanceFunction;
 
     public TestDistance(int width, int height) {
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -91,7 +90,7 @@ public class TestDistance extends JPanel {
         g2.drawImage(canvas, null, null);
     }
 
-    public void setDistanceFunction(BiFunction<double[], double[], Double> distanceFunction) {
+    public void setDistanceFunction(Distance distanceFunction) {
         this.distanceFunction = distanceFunction;
         drawCanvas();
         repaint();

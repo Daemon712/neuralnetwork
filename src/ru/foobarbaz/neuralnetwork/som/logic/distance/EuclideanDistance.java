@@ -2,9 +2,7 @@ package ru.foobarbaz.neuralnetwork.som.logic.distance;
 
 import ru.foobarbaz.neuralnetwork.common.ArraysHelper;
 
-import java.util.function.BiFunction;
-
-public class EuclideanDistance implements BiFunction<double[], double[], Double> {
+public class EuclideanDistance implements Distance {
 
     @Override
     public Double apply(double[] a, double[] b) {

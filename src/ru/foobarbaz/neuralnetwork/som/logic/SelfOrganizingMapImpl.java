@@ -1,7 +1,10 @@
 package ru.foobarbaz.neuralnetwork.som.logic;
 
+import ru.foobarbaz.neuralnetwork.som.logic.distance.Distance;
+
 public class SelfOrganizingMapImpl implements SelfOrganizingMap {
     private double[][] weights;
+    private Distance distance;
 
     public SelfOrganizingMapImpl(int inputNeurons, int outputNeurons) {
         initWeights(inputNeurons, outputNeurons);
