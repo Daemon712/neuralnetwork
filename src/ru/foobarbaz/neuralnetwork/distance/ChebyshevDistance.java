@@ -10,6 +10,5 @@ public class ChebyshevDistance implements BiFunction<double[], double[], Double>
     public Double apply(double[] a, double[] b) {
         OptionalDouble max = ArraysHelper.mergeByBiFunction(a, b, (x, y) -> Math.abs(x - y)).max();
         return max.isPresent() ? max.getAsDouble() : 0;
-
     }
 }

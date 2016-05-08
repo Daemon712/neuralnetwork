@@ -1,4 +1,4 @@
-package ru.foobarbaz.neuralnetwork.gui;
+package ru.foobarbaz.neuralnetwork.gui.perceptron;
 
 import ru.foobarbaz.neuralnetwork.network.NeuralNetwork;
 
