@@ -11,4 +11,9 @@ public class EuclideanDistance implements BiFunction<double[], double[], Double>
         double squareEuclideanDistance = ArraysHelper.mergeByBiFunction(a, b, (x, y) -> (x - y) * (x - y)).sum();
         return Math.sqrt(squareEuclideanDistance);
     }
+
+    @Override
+    public String toString() {
+        return "Euclidean Distance";
+    }
 }

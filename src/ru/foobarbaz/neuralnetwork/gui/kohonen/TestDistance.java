@@ -19,8 +19,20 @@ public class TestDistance extends JPanel {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS));
 
         TestDistance testDistance = new TestDistance(800, 600);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+        SpinnerNumberModel spinnerModel = new SpinnerNumberModel();
+        spinnerModel.setMinimum(1);
+        spinnerModel.setMaximum(100);
+        spinnerModel.setValue(colors.length);
+        JSpinner spinner = new JSpinner(spinnerModel);
+        spinner.setPreferredSize(new Dimension(50, 24));
         JButton button = new JButton("Generate New Points");
-        button.addActionListener(e -> testDistance.resetPoints());
+        button.addActionListener(e -> {
+            Integer value = (Integer)spinner.getValue();
+            testDistance.resetPoints(value == null ? 1 : value);
+        });
         JComboBox<BiFunction> functionsList = new JComboBox<>(new BiFunction[]{
                 new EuclideanDistance(),
                 new ManhattanDistance(),
@@ -32,35 +44,38 @@ public class TestDistance extends JPanel {
             testDistance.setDistanceFunction(function);
         });
 
-        frame.add(button);
-        frame.add(functionsList);
+        panel.add(spinner);
+        panel.add(button);
+        panel.add(functionsList);
+        frame.add(panel);
         frame.add(testDistance);
         frame.pack();
         frame.setVisible(true);
     }
 
-    private final static int POINT_RADIUS = 3;
+    private static final int POINT_RADIUS = 3;
+    private static final float[] POINT_COLOR = new float[]{0, 0, 0};
+    private static final Color[] colors = new Color[]{
+            Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE, Color.MAGENTA,
+            Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY, Color.WHITE,
+    };
     private BufferedImage canvas;
     private Point[] points;
     private BiFunction<double[], double[], Double> distanceFunction;
 
     public TestDistance(int width, int height) {
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        initPoints();
+        initPoints(colors.length);
         setDistanceFunction(new EuclideanDistance());
     }
 
-    private void initPoints() {
+    private void initPoints(int numOfPoints) {
         Random r = new Random();
-        Color[] colors = new Color[]{
-                Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE, Color.MAGENTA,
-                Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY, Color.WHITE,
-        };
-        points = new Point[colors.length];
-        for (int i = 0; i < colors.length; i++) {
-            int x = POINT_RADIUS + r.nextInt(canvas.getWidth() - POINT_RADIUS);
-            int y = POINT_RADIUS + r.nextInt(canvas.getHeight() - POINT_RADIUS);
-            points[i] = new Point(x, y, colors[i]);
+        points = new Point[numOfPoints];
+        for (int i = 0; i < points.length; i++) {
+            int x = POINT_RADIUS + r.nextInt(canvas.getWidth() - 2 * POINT_RADIUS);
+            int y = POINT_RADIUS + r.nextInt(canvas.getHeight() - 2 *POINT_RADIUS);
+            points[i] = new Point(x, y, colors[i % colors.length]);
         }
     }
 
@@ -82,8 +97,8 @@ public class TestDistance extends JPanel {
         repaint();
     }
 
-    public void resetPoints(){
-        initPoints();
+    public void resetPoints(int numOfPoints){
+        initPoints(numOfPoints);
         drawCanvas();
         repaint();
     }
@@ -106,7 +121,7 @@ public class TestDistance extends JPanel {
         for (Point point : points) {
             for (int i = (int)point.getX() - POINT_RADIUS; i < point.getX() + POINT_RADIUS; i++) {
                 for (int j = (int)point.getY() - POINT_RADIUS; j < point.getY() + POINT_RADIUS; j++) {
-                    canvas.getRaster().setPixel(i, j, new float[]{0, 0, 0});
+                    canvas.getRaster().setPixel(i, j, POINT_COLOR);
                 }
             }
         }
