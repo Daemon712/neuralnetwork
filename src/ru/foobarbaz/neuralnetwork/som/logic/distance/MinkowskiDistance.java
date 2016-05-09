@@ -19,7 +19,7 @@ public class MinkowskiDistance implements Distance {
     @Override
     public Double apply(double[] a, double[] b) {
         double sum = ArraysHelper.mergeByBiFunction(a, b, (x, y) -> Math.pow(Math.abs(x - y), p)).sum();
-        return Math.exp(Math.log(sum) * p);
+        return Math.pow(sum, 1/p);
     }
 
     @Override

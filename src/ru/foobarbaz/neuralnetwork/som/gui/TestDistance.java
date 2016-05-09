@@ -31,12 +31,15 @@ public class TestDistance extends JPanel {
             testDistance.resetPoints(value == null ? 1 : value);
         });
         JComboBox<Distance> functionsList = new JComboBox<>(new Distance[]{
+                new MinkowskiDistance(0.8),
                 new ManhattanDistance(),
                 new MinkowskiDistance(1.5),
                 new EuclideanDistance(),
-                new MinkowskiDistance(8),
+                new SquaredWeightedEuclideanDistance(0.01),
+                new MinkowskiDistance(6),
                 new ChebyshevDistance(),
         });
+        functionsList.setSelectedIndex(3);
         functionsList.addActionListener(e -> {
             JComboBox cb = (JComboBox)e.getSource();
             Distance function = (Distance)cb.getSelectedItem();
@@ -55,8 +58,8 @@ public class TestDistance extends JPanel {
     private static final int POINT_RADIUS = 3;
     private static final float[] POINT_COLOR = new float[]{0, 0, 0};
     private static final Color[] colors = new Color[]{
-            Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE, Color.MAGENTA,
-            Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY, Color.WHITE,
+            Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN,
+            Color.CYAN, Color.BLUE, Color.MAGENTA, Color.WHITE,
     };
     private BufferedImage canvas;
     private Point[] points;
@@ -65,7 +68,7 @@ public class TestDistance extends JPanel {
     public TestDistance(int width, int height) {
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         initPoints(colors.length);
-        setDistanceFunction(new ManhattanDistance());
+        setDistanceFunction(new EuclideanDistance());
     }
 
     private void initPoints(int numOfPoints) {
@@ -111,7 +114,15 @@ public class TestDistance extends JPanel {
                                 distanceFunction.apply(a.getCoordinates(), coordinates),
                                 distanceFunction.apply(b.getCoordinates(), coordinates)
                         ));
-                Color color = nearest.isPresent() ? nearest.get().getColor() : Color.BLACK;
+                Color color = Color.BLACK;
+                if (nearest.isPresent()){
+                    color = nearest.get().getColor();
+                    double d = distanceFunction.apply(nearest.get().getCoordinates(), coordinates);
+                    while (d > 50){
+                        color = color.darker();
+                        d -= 50;
+                    }
+                }
 
                 canvas.getRaster().setPixel(i, j, new float[]{color.getRed(), color.getGreen(), color.getBlue()});
             }
