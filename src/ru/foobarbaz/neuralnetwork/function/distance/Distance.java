@@ -1,4 +1,4 @@
-package ru.foobarbaz.neuralnetwork.som.logic.distance;
+package ru.foobarbaz.neuralnetwork.function.distance;
 
 import java.util.function.BiFunction;
 

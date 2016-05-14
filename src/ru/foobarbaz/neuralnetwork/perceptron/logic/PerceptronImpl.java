@@ -1,10 +1,14 @@
 package ru.foobarbaz.neuralnetwork.perceptron.logic;
 
+import ru.foobarbaz.neuralnetwork.function.SigmoidFunction;
+import java.util.function.Function;
+
 public class PerceptronImpl implements Perceptron {
     private static final double STUDYING_POWER = 3;
     protected double[][][] weights;
     protected double[][] neurons;
     private double[][] errors;
+    private Function<Double, Double> activateFunction = new SigmoidFunction();
 
     public PerceptronImpl(int[] neuronsOnLayers){
         if (neuronsOnLayers.length < 2) {
@@ -58,7 +62,7 @@ public class PerceptronImpl implements Perceptron {
     }
 
     private double derValue(double value){
-        double func = activate(value);
+        double func = activateFunction.apply(value);
         return func*(1-func);
     }
 
@@ -157,14 +161,6 @@ public class PerceptronImpl implements Perceptron {
             sum += neurons[layer-1][i] * weights[layer-1][neuron][i];
         }
 
-        neurons[layer][neuron] = activate(sum);
-    }
-
-    /** Sigmoid function.
-     * @param x value between -infinity and +infinity
-     * @return value between 0 and 1
-     */
-    protected double activate(double x){
-        return 1/(1+Math.exp(-x));
+        neurons[layer][neuron] = activateFunction.apply(sum);
     }
 }

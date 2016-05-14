@@ -1,6 +1,6 @@
 package ru.foobarbaz.neuralnetwork.som.gui;
 
-import ru.foobarbaz.neuralnetwork.som.logic.distance.*;
+import ru.foobarbaz.neuralnetwork.function.distance.*;
 
 import javax.swing.*;
 import java.awt.*;
