@@ -2,7 +2,7 @@ package ru.foobarbaz.neuralnetwork.function.distance;
 
 import ru.foobarbaz.neuralnetwork.common.ArraysHelper;
 
-public class SquaredWeightedEuclideanDistance implements Distance {
+public class SquaredWeightedEuclideanDistance implements DistanceFunction {
     private double weight;
 
     public SquaredWeightedEuclideanDistance() {
@@ -20,6 +20,6 @@ public class SquaredWeightedEuclideanDistance implements Distance {
 
     @Override
     public String toString() {
-        return "Squared Weighted Euclidean Distance (w = " + weight + ")";
+        return "Squared Weighted Euclidean DistanceFunction (w = " + weight + ")";
     }
 }

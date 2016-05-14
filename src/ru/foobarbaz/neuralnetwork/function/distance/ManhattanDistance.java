@@ -2,7 +2,7 @@ package ru.foobarbaz.neuralnetwork.function.distance;
 
 import ru.foobarbaz.neuralnetwork.common.ArraysHelper;
 
-public class ManhattanDistance implements Distance {
+public class ManhattanDistance implements DistanceFunction {
     @Override
     public Double apply(double[] a, double[] b) {
         return ArraysHelper.mergeByBiFunction(a, b, (x, y) -> Math.abs(x - y)).sum();
@@ -10,6 +10,6 @@ public class ManhattanDistance implements Distance {
 
     @Override
     public String toString() {
-        return "Manhattan Distance";
+        return "Manhattan DistanceFunction";
     }
 }

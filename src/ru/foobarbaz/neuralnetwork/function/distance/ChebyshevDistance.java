@@ -4,7 +4,7 @@ import ru.foobarbaz.neuralnetwork.common.ArraysHelper;
 
 import java.util.OptionalDouble;
 
-public class ChebyshevDistance implements Distance {
+public class ChebyshevDistance implements DistanceFunction {
     @Override
     public Double apply(double[] a, double[] b) {
         OptionalDouble max = ArraysHelper.mergeByBiFunction(a, b, (x, y) -> Math.abs(x - y)).max();
@@ -13,6 +13,6 @@ public class ChebyshevDistance implements Distance {
 
     @Override
     public String toString() {
-        return "Chebyshev Distance";
+        return "Chebyshev DistanceFunction";
     }
 }

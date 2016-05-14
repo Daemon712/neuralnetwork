@@ -19,7 +19,7 @@ public class SelfOrganizingMapTest {
     @BeforeClass
     public static void setUp() throws Exception {
         selfOrganizingMap = new SelfOrganizingMapImpl(2, 4);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             for (Object[] params : data()) {
                 double[] input = (double[]) params[0];
                 selfOrganizingMap.study(input);

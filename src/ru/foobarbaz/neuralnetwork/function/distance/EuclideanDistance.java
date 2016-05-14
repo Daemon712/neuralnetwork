@@ -2,7 +2,7 @@ package ru.foobarbaz.neuralnetwork.function.distance;
 
 import ru.foobarbaz.neuralnetwork.common.ArraysHelper;
 
-public class EuclideanDistance implements Distance {
+public class EuclideanDistance implements DistanceFunction {
 
     @Override
     public Double apply(double[] a, double[] b) {
@@ -12,6 +12,6 @@ public class EuclideanDistance implements Distance {
 
     @Override
     public String toString() {
-        return "Euclidean Distance";
+        return "Euclidean DistanceFunction";
     }
 }

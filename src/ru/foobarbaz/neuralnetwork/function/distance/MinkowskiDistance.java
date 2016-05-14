@@ -2,7 +2,7 @@ package ru.foobarbaz.neuralnetwork.function.distance;
 
 import ru.foobarbaz.neuralnetwork.common.ArraysHelper;
 
-public class MinkowskiDistance implements Distance {
+public class MinkowskiDistance implements DistanceFunction {
     private double p;
 
     /**
@@ -24,6 +24,6 @@ public class MinkowskiDistance implements Distance {
 
     @Override
     public String toString() {
-        return "Minkowski Distance (p = " + p + ")";
+        return "Minkowski DistanceFunction (p = " + p + ")";
     }
 }

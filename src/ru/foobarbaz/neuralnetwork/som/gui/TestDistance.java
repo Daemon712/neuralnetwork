@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class TestDistance extends JPanel {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Test Distance");
+        JFrame frame = new JFrame("Test Distance Functions");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS));
 
@@ -30,7 +30,7 @@ public class TestDistance extends JPanel {
             Integer value = (Integer)spinner.getValue();
             testDistance.resetPoints(value == null ? 1 : value);
         });
-        JComboBox<Distance> functionsList = new JComboBox<>(new Distance[]{
+        JComboBox<DistanceFunction> functionsList = new JComboBox<>(new DistanceFunction[]{
                 new MinkowskiDistance(0.8),
                 new ManhattanDistance(),
                 new MinkowskiDistance(1.5),
@@ -42,7 +42,7 @@ public class TestDistance extends JPanel {
         functionsList.setSelectedIndex(3);
         functionsList.addActionListener(e -> {
             JComboBox cb = (JComboBox)e.getSource();
-            Distance function = (Distance)cb.getSelectedItem();
+            DistanceFunction function = (DistanceFunction)cb.getSelectedItem();
             testDistance.setDistanceFunction(function);
         });
 
@@ -63,7 +63,7 @@ public class TestDistance extends JPanel {
     };
     private BufferedImage canvas;
     private Point[] points;
-    private Distance distanceFunction;
+    private DistanceFunction distanceFunction;
 
     public TestDistance(int width, int height) {
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -93,7 +93,7 @@ public class TestDistance extends JPanel {
         g2.drawImage(canvas, null, null);
     }
 
-    public void setDistanceFunction(Distance distanceFunction) {
+    public void setDistanceFunction(DistanceFunction distanceFunction) {
         this.distanceFunction = distanceFunction;
         drawCanvas();
         repaint();
