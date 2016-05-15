@@ -1,6 +1,8 @@
 package ru.foobarbaz.neuralnetwork.common;
 
+import java.util.Collection;
 import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
@@ -21,5 +23,13 @@ public abstract class ArraysHelper {
             streamBuilder.accept(function.apply(array1[i], array2[i]));
         }
         return streamBuilder.build();
+    }
+
+    public static double[][] to2DArray(Collection<double[]> collection){
+        return collection.toArray(new double[collection.size()][]);
+    }
+
+    public static double[][] to2DArray(Stream<double[]> stream){
+        return to2DArray(stream.collect(Collectors.toList()));
     }
 }
