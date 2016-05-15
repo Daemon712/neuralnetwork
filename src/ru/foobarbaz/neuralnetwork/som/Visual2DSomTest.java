@@ -33,6 +33,8 @@ public class Visual2DSomTest {
         frame.add(label);
 
         JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, images.size() - 1, 0);
+        slider.setMajorTickSpacing(1);
+        slider.setPaintTicks(true);
         slider.addChangeListener((e) -> {
             int value = slider.getValue();
             icon.setImage(images.get(value));
