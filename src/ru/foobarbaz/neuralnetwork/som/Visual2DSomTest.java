@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Visual2DSomTest {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Test 2D Self Organizing Map");
+        JFrame frame = new JFrame("Test 2D Self-Organizing Map");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS));
 
