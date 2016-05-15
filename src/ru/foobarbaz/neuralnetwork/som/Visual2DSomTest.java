@@ -1,7 +1,7 @@
 package ru.foobarbaz.neuralnetwork.som;
 
 import ru.foobarbaz.neuralnetwork.function.distance.DistanceFunction;
-import ru.foobarbaz.neuralnetwork.function.distance.EuclideanDistance;
+import ru.foobarbaz.neuralnetwork.function.distance.ManhattanDistance;
 import ru.foobarbaz.neuralnetwork.som.logic.SelfOrganizingMap;
 import ru.foobarbaz.neuralnetwork.som.logic.SelfOrganizingMapImpl;
 
@@ -17,15 +17,16 @@ public class Visual2DSomTest {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS));
 
-        Visual2DSomTest logic = new Visual2DSomTest(4, new EuclideanDistance());
+        Visual2DSomTest logic = new Visual2DSomTest(5, new ManhattanDistance());
         logic.setPoints(new double[][]{
                 { -1.0,    0.5 },
                 {  0.5,    1.0 },
                 { -0.5,   -1.0 },
-                {  1.0,   -0.5 }
+                {  1.0,   -0.5 },
+                {  0.0,    0.0 }
         });
 
-        List<BufferedImage> images = logic.studyAndCollectImages(6);
+        List<BufferedImage> images = logic.studyAndCollectImages(10);
 
         ImageIcon icon = new ImageIcon(images.get(0));
         JLabel label = new JLabel(icon);
