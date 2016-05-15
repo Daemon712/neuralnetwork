@@ -61,11 +61,11 @@ public class Visual2DSomTest {
         images.add(drawCanvas());
 
         for (int i = 0; i < eras; i++) {
-            som.setStudyingEra(i);
             for (double[] point : points) {
                 som.study(point);
                 images.add(drawCanvas());
             }
+            som.nextStudyingEra();
         }
 
         return images;

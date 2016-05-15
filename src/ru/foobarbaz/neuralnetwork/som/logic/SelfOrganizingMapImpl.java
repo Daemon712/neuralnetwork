@@ -6,6 +6,7 @@ import ru.foobarbaz.neuralnetwork.function.distance.DistanceFunction;
 import ru.foobarbaz.neuralnetwork.function.distance.EuclideanDistance;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -55,9 +56,21 @@ public class SelfOrganizingMapImpl implements SelfOrganizingMap {
         });
     }
 
-    public void setStudyingEra(int studyingEra) {
-        if (studyingEra < 0) throw new IllegalArgumentException();
-        this.studyingEra = studyingEra;
+    @Override
+    public void study(double[][] inputs) {
+        Arrays.stream(inputs).forEach(this::study);
+        nextStudyingEra();
+    }
+
+    @Override
+    public void study(double[][] inputs, int eras) {
+        for (int i = 0; i < eras; i++)
+            study(inputs);
+    }
+
+    @Override
+    public void nextStudyingEra() {
+        studyingEra++;
     }
 
     @Override

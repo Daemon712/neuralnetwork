@@ -22,12 +22,7 @@ public class SelfOrganizingMapTest {
     @BeforeClass
     public static void setUp() throws Exception {
         selfOrganizingMap = new SelfOrganizingMapImpl(2, CLUSTERS);
-        for (int i = 0; i < ERAS; i++) {
-            selfOrganizingMap.setStudyingEra(i);
-            for (double[] point : studyingDataSet) {
-                selfOrganizingMap.study(point);
-            }
-        }
+        selfOrganizingMap.study(studyingDataSet, ERAS);
     }
 
     @Test
