@@ -70,7 +70,7 @@ public class SelfOrganizingMapImpl implements SelfOrganizingMap {
             throw new IllegalArgumentException("input vector has a wrong length");
         }
         return neurons.stream()
-                .filter(n -> filterPotentials || n.potential >= potentialMinimum)
+                .filter(n -> !filterPotentials || n.potential >= potentialMinimum)
                 .min((a, b) -> Double.compare(
                     distanceFunction.apply(a.weights, input),
                     distanceFunction.apply(b.weights, input)

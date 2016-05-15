@@ -1,4 +1,4 @@
-package ru.foobarbaz.neuralnetwork.som.gui;
+package ru.foobarbaz.neuralnetwork.som;
 
 import ru.foobarbaz.neuralnetwork.function.distance.*;
 
@@ -9,13 +9,13 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 
-public class TestDistance extends JPanel {
+public class VisualTestDistance extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Test Distance Functions");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS));
 
-        TestDistance testDistance = new TestDistance(800, 600);
+        VisualTestDistance visualTestDistance = new VisualTestDistance(800, 600);
 
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
@@ -28,7 +28,7 @@ public class TestDistance extends JPanel {
         JButton button = new JButton("Generate New Points");
         button.addActionListener(e -> {
             Integer value = (Integer)spinner.getValue();
-            testDistance.resetPoints(value == null ? 1 : value);
+            visualTestDistance.resetPoints(value == null ? 1 : value);
         });
         JComboBox<DistanceFunction> functionsList = new JComboBox<>(new DistanceFunction[]{
                 new MinkowskiDistance(0.8),
@@ -43,14 +43,14 @@ public class TestDistance extends JPanel {
         functionsList.addActionListener(e -> {
             JComboBox cb = (JComboBox)e.getSource();
             DistanceFunction function = (DistanceFunction)cb.getSelectedItem();
-            testDistance.setDistanceFunction(function);
+            visualTestDistance.setDistanceFunction(function);
         });
 
         panel.add(spinner);
         panel.add(button);
         panel.add(functionsList);
         frame.add(panel);
-        frame.add(testDistance);
+        frame.add(visualTestDistance);
         frame.pack();
         frame.setVisible(true);
     }
@@ -65,7 +65,7 @@ public class TestDistance extends JPanel {
     private Point[] points;
     private DistanceFunction distanceFunction;
 
-    public TestDistance(int width, int height) {
+    public VisualTestDistance(int width, int height) {
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         initPoints(colors.length);
         setDistanceFunction(new EuclideanDistance());
