@@ -10,6 +10,6 @@ public class ManhattanDistance implements DistanceFunction {
 
     @Override
     public String toString() {
-        return "Manhattan DistanceFunction";
+        return "Manhattan Distance";
     }
 }

@@ -20,6 +20,6 @@ public class SquaredWeightedEuclideanDistance implements DistanceFunction {
 
     @Override
     public String toString() {
-        return "Squared Weighted Euclidean DistanceFunction (w = " + weight + ")";
+        return "Squared Weighted Euclidean Distance (w = " + weight + ")";
     }
 }

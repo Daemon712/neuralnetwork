@@ -12,6 +12,6 @@ public class EuclideanDistance implements DistanceFunction {
 
     @Override
     public String toString() {
-        return "Euclidean DistanceFunction";
+        return "Euclidean Distance";
     }
 }

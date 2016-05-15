@@ -13,6 +13,6 @@ public class ChebyshevDistance implements DistanceFunction {
 
     @Override
     public String toString() {
-        return "Chebyshev DistanceFunction";
+        return "Chebyshev Distance";
     }
 }
