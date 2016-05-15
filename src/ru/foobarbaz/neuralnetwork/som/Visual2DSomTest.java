@@ -18,13 +18,14 @@ public class Visual2DSomTest {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS));
 
         Visual2DSomTest logic = new Visual2DSomTest(5, new ManhattanDistance());
-        logic.setPoints(new double[][]{
+        double[][] points = new double[][]{
                 { -1.0,    0.5 },
                 {  0.5,    1.0 },
                 { -0.5,   -1.0 },
                 {  1.0,   -0.5 },
                 {  0.0,    0.0 }
-        });
+        };
+        logic.setPoints(points);
 
         List<BufferedImage> images = logic.studyAndCollectImages(10);
 
@@ -33,7 +34,8 @@ public class Visual2DSomTest {
         frame.add(label);
 
         JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, images.size() - 1, 0);
-        slider.setMajorTickSpacing(1);
+        slider.setMajorTickSpacing(points.length);
+        slider.setMinorTickSpacing(1);
         slider.setPaintTicks(true);
         slider.addChangeListener((e) -> {
             int value = slider.getValue();
@@ -87,7 +89,7 @@ public class Visual2DSomTest {
             }
         }
 
-        drawPoints(canvas, points, 3, Color.white);
+        drawPoints(canvas, points, 5, Color.white);
         drawPoints(canvas, som.getWeights(), 2, Color.black);
 
         return canvas;
