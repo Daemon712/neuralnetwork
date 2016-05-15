@@ -5,20 +5,30 @@ import ru.foobarbaz.neuralnetwork.function.HyperbolicFunction;
 import ru.foobarbaz.neuralnetwork.function.distance.DistanceFunction;
 import ru.foobarbaz.neuralnetwork.function.distance.EuclideanDistance;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class SelfOrganizingMapImpl implements SelfOrganizingMap {
     private static final DistanceFunction DEFAULT_DISTANCE_FUNCTION = new EuclideanDistance();
-    private double[][] weights;
+    private double potentialMinimum = 1;
+    private int inputParams;
+    private List<Neuron> neurons;
     private DistanceFunction distanceFunction;
-    private Function<Double, Double> studyingSpeedFunction = new HyperbolicFunction(2, 1);
-    private Function<Double, Double> neighborhoodFunction = new GaussianFunction();
+    private Function<Double, Double> studyingSpeedFunction = new HyperbolicFunction(1, 1);
+    private Function<Double, Double> neighborhoodFunction = new GaussianFunction(0.5, 0);
     private int studyingEra = 0;
 
-    public SelfOrganizingMapImpl(DistanceFunction distanceFunction, int inputNeurons, int outputNeurons) {
+    public SelfOrganizingMapImpl(DistanceFunction distanceFunction, int inputParams, int clusters) {
         if (distanceFunction == null) throw new IllegalArgumentException("distanceFunction can't be null");
+        if (inputParams < 1) throw new IllegalArgumentException("inputParams must be positive");
+        if (clusters < 1) throw new IllegalArgumentException("clusters must be positive");
         this.distanceFunction = distanceFunction;
-        initWeights(inputNeurons, outputNeurons);
+        this.inputParams = inputParams;
+        neurons = new ArrayList<>(clusters);
+        for (int i = 0; i < clusters; i++) {
+            neurons.add(new Neuron(i));
+        }
     }
 
     public SelfOrganizingMapImpl(int inputNeurons, int outputNeurons) {
@@ -27,46 +37,67 @@ public class SelfOrganizingMapImpl implements SelfOrganizingMap {
 
     @Override
     public void study(double[] input) {
-        int winnerIndex = process(input);
+        Neuron winner = getWinner(input, true);
 
-        for (double[] neuron : weights) {
-            double distanceToWinner = distanceFunction.apply(neuron, weights[winnerIndex]);
-            double delta = neighborhoodFunction.apply(distanceToWinner) *
+        neurons.forEach(neuron -> {
+            double distanceToWinner = distanceFunction.apply(neuron.weights, winner.weights);
+            double power = neighborhoodFunction.apply(distanceToWinner) *
                     studyingSpeedFunction.apply((double) studyingEra);
 
-            for (int i = 0; i < neuron.length; i++) {
-                neuron[i] += delta + (neuron[i] - input[i]);
+            for (int i = 0; i < neuron.weights.length; i++) {
+                double delta = input[i] - neuron.weights[i];
+                neuron.weights[i] += power * delta;
             }
-        }
 
-        studyingEra++;
+            neuron.potential += 1d / neurons.size();
+            if (winner.index == neuron.index)
+                neuron.potential -= potentialMinimum;
+        });
+    }
+
+    public void setStudyingEra(int studyingEra) {
+        if (studyingEra < 0) throw new IllegalArgumentException();
+        this.studyingEra = studyingEra;
     }
 
     @Override
     public int process(double[] input) {
-        if (input.length != weights[0].length){
-            throw new IllegalArgumentException("input vector has a wrong length");
-        }
-
-        int minIndex = 0;
-        double minValue = distanceFunction.apply(weights[0], input);
-
-        for (int i = 1; i < weights.length; i++) {
-            double d = distanceFunction.apply(weights[i], input);
-            if (d < minValue){
-                minIndex = i;
-                minValue = d;
-            }
-        }
-
-        return minIndex;
+        return getWinner(input, false).index;
     }
 
-    private void initWeights(int inputNeurons, int outputNeurons){
-        weights = new double[outputNeurons][inputNeurons];
+    private Neuron getWinner(double[] input, boolean filterPotentials) {
+        if (input.length != inputParams){
+            throw new IllegalArgumentException("input vector has a wrong length");
+        }
+        return neurons.stream()
+                .filter(n -> filterPotentials || n.potential >= potentialMinimum)
+                .min((a, b) -> Double.compare(
+                    distanceFunction.apply(a.weights, input),
+                    distanceFunction.apply(b.weights, input)
+                )
+        ).get();
+    }
+
+    @Override
+    public double[][] getWeights() {
+        double[][] weights = new double[neurons.size()][];
         for (int i = 0; i < weights.length; i++) {
-            for (int j = 0; j < weights[i].length; j++) {
-                weights[i][j] = Math.random() - 0.5;
+            weights[i] = neurons.get(i).weights.clone();
+        }
+        return weights;
+    }
+
+    private class Neuron {
+        private final int index;
+        private double potential;
+        private double[] weights;
+
+        public Neuron(int index) {
+            this.index = index;
+            this.potential = 1;
+            weights = new double[inputParams];
+            for (int i = 0; i < weights.length; i++) {
+                weights[i] = Math.random() - 0.5;
             }
         }
     }
