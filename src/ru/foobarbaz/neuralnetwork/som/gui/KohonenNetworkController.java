@@ -33,7 +33,7 @@ public class KohonenNetworkController {
             vehicle.setEnginePower(Float.parseFloat(powerField.getText()));
             vehicle.setEngineVolume(Float.parseFloat(volumeField.getText()));
             vehicle.setMass(Integer.parseInt(massField.getText()));
-            vehicle.setCapacity(Integer.parseInt(volumeField.getText()));
+            vehicle.setCapacity(Integer.parseInt(capacityField.getText()));
             dataSet.add(vehicle);
         } catch (RuntimeException ex){
             Alert alert = new Alert(Alert.AlertType.ERROR);
