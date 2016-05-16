@@ -12,22 +12,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Visual2DSomTest {
+    private static final int CLUSTERS = 10;
+    private static final int POINTS = 10;
+    private static final int ERAS = 10;
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Test 2D Self-Organizing Map");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS));
 
-        Visual2DSomTest logic = new Visual2DSomTest(5, new ManhattanDistance());
-        double[][] points = new double[][]{
-                { -1.0,    0.5 },
-                {  0.5,    1.0 },
-                { -0.5,   -1.0 },
-                {  1.0,   -0.5 },
-                {  0.0,    0.0 }
-        };
+        Visual2DSomTest logic = new Visual2DSomTest(CLUSTERS, new ManhattanDistance());
+        double[][] points = new double[POINTS][2];
+        for (int i = 0; i < points.length ; i++) {
+            points[i][0] = Math.random() * 2 - 1;
+            points[i][1] = Math.random() * 2 - 1;
+        }
         logic.setPoints(points);
-
-        List<BufferedImage> images = logic.studyAndCollectImages(10);
+        List<BufferedImage> images = logic.studyAndCollectImages(ERAS);
 
         ImageIcon icon = new ImageIcon(images.get(0));
         JLabel label = new JLabel(icon);
