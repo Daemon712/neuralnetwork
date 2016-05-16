@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DataSet>
+    <Vehicle name="test 1" cost="30000" engine_power="5.5" engine_volume="0.3" mass="78" capacity="1"/>
+    <Vehicle name="test 2" cost="45000" engine_power="9.5" engine_volume="0.7" mass="121" capacity="2"/>
+</DataSet>

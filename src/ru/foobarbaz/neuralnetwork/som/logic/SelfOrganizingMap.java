@@ -7,4 +7,5 @@ public interface SelfOrganizingMap {
     void study(double[][] inputs, int eras);
     void nextStudyingEra();
     double[][] getWeights();
+    int getClusters();
 }

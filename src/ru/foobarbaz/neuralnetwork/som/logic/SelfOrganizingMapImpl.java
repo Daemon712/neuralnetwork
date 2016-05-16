@@ -100,6 +100,11 @@ public class SelfOrganizingMapImpl implements SelfOrganizingMap {
         return weights;
     }
 
+    @Override
+    public int getClusters() {
+        return neurons.size();
+    }
+
     private class Neuron {
         private final int index;
         private double potential;

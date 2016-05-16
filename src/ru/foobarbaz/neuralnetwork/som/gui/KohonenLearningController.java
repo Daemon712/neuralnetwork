@@ -1,10 +1,14 @@
 package ru.foobarbaz.neuralnetwork.som.gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ru.foobarbaz.neuralnetwork.common.ArraysHelper;
 import ru.foobarbaz.neuralnetwork.function.distance.DistanceFunction;
@@ -17,9 +21,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
-public class KohonenNetworkLearningController {
+public class KohonenLearningController {
     @FXML
     private ComboBox<DistanceFunction> distanceComboBox;
     private DistanceFunction distanceFunction;
@@ -32,7 +37,7 @@ public class KohonenNetworkLearningController {
     private TextField erasField;
     private int eras;
 
-    private DataSet dataSet;
+    private List<Vehicle> data;
 
     public void loadDataAndStudy(){
         try {
@@ -42,35 +47,45 @@ public class KohonenNetworkLearningController {
             return;
         }
 
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(null);
-        if (file == null || !file.exists() || !file.isFile()){
-            showErrorAlert("Файл конфигурации не выбран!");
+        try {
+            data = loadDataFromFile();
+        } catch (JAXBException | RuntimeException e){
+            showErrorAlert("Некорректный файл конфигурации!");
             return;
         }
 
         try {
-            dataSet = readDataSet(file);
-        } catch (JAXBException ex){
-            showErrorAlert("Некорректный файл конфигурации!");
-            return;
+            showNetworkWindow(createAndStudySom());
+        } catch (Exception e){
+            e.printStackTrace();
+            showErrorAlert("Что-то пошло не так :(");
         }
+    }
+
+    private List<Vehicle> loadDataFromFile() throws JAXBException{
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        if (file == null || !file.exists() || !file.isFile()){
+            throw new RuntimeException();
+        }
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(DataSet.class);
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        DataSet dataSet = (DataSet) jaxbUnmarshaller.unmarshal(file);
 
         List<Vehicle> vehicles = dataSet.getData();
         if (vehicles.isEmpty()){
-            showErrorAlert("Некорректный файл конфигурации!");
-            return;
+            throw new RuntimeException();
         }
-        int inputParams = vehicles.get(0).getNormalizedData().length;
-        SelfOrganizingMap som = new SelfOrganizingMapImpl(distanceFunction, inputParams, clusters);
-        double[][] studyingData = ArraysHelper.to2DArray(vehicles.stream().map(Vehicle::getNormalizedData));
-        som.study(studyingData, eras);
+        return vehicles;
     }
 
-    private DataSet readDataSet(File file) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(DataSet.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        return (DataSet) jaxbUnmarshaller.unmarshal(file);
+    private SelfOrganizingMap createAndStudySom() {
+        int inputParams = data.get(0).getNormalizedData().length;
+        SelfOrganizingMap som = new SelfOrganizingMapImpl(distanceFunction, inputParams, clusters);
+        double[][] studyingData = ArraysHelper.to2DArray(data.stream().map(Vehicle::getNormalizedData));
+        som.study(studyingData, eras);
+        return som;
     }
 
     private void readAndValidateFormData(){
@@ -82,6 +97,16 @@ public class KohonenNetworkLearningController {
         if (clusters <= 0 || eras <= 0) {
             throw new RuntimeException();
         }
+    }
+
+    private void showNetworkWindow(SelfOrganizingMap som) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/KohonenNetwork.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        KohonenNetworkController controller = loader.getController();
+        controller.initialize(som, data);
+        stage.show();
     }
 
     private void showErrorAlert(String header){

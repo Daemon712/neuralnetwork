@@ -28,6 +28,9 @@ public class Vehicle {
 
     @XmlAttribute(name = "name", required = true)
     public void setName(String name) {
+        if (name == null || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Empty name is not allowed");
+        }
         this.name = name;
     }
 

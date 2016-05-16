@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane prefHeight="800.0" prefWidth="800.0" hgap="20" vgap="20" style="-fx-padding: 20px"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.foobarbaz.neuralnetwork.som.gui.KohonenNetworkController">
+
+    <!--форма ввода данных-->
+    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0" hgap="10" vgap="10">
+        <Label text="Кластеризация" GridPane.halignment="CENTER"
+               GridPane.columnSpan="2" GridPane.rowIndex="0"
+               style="-fx-font-size: 18pt; -fx-font-weight: bold;"/>
+
+        <Label text="Название" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+        <TextField text="" fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Цена" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+        <TextField text="0" fx:id="costField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Мощность двигателя" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="RIGHT"/>
+        <TextField text="0" fx:id="powerField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Объем двигателя" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="RIGHT"/>
+        <TextField text="0" fx:id="volumeField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+        <Label text="Масса" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="RIGHT"/>
+        <TextField text="0" fx:id="massField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+        <Label text="Вместительность" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.halignment="RIGHT"/>
+        <TextField text="0" fx:id="capacityField" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+        <Button text="Определить кластер"
+                onAction="#readNewVehicle"
+                GridPane.halignment="CENTER"
+                GridPane.columnSpan="2"
+                GridPane.rowIndex="7"/>
+    </GridPane>
+
+    <!--список кластеров и их состав-->
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <Label text="Кластеры"
+               GridPane.columnSpan="2" GridPane.rowIndex="0"
+               style="-fx-font-size: 18pt; -fx-font-weight: bold;"/>
+        <Label text="Здесь должен быть список кластеров и их состав"/>
+    </VBox>
+
+    <!--карта кахонена-->
+    <VBox GridPane.rowIndex="1" GridPane.columnSpan="2">
+        <Label text="Карта кахонена"
+               GridPane.columnSpan="2" GridPane.rowIndex="0"
+               style="-fx-font-size: 18pt; -fx-font-weight: bold;"/>
+        <Label text="Здесь должна быть карта кахонена"/>
+    </VBox>
+</GridPane>
