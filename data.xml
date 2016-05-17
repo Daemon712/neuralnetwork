@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DataSet>
-    <Vehicle name="test 1" cost="30000" engine_power="5.5" engine_volume="0.3" mass="78" capacity="1"/>
-    <Vehicle name="test 2" cost="45000" engine_power="9.5" engine_volume="0.7" mass="121" capacity="2"/>
+    <Vehicle name="Мопед Дельта" cost="20000" engine_power="5" engine_volume="0.05" mass="60" capacity="1"/>
+    <Vehicle name="Мотороллер Муравей" cost="35000" engine_power="11" engine_volume="0.2" mass="240" capacity="3"/>
+    <Vehicle name="Скутер Suzuki Sepia" cost="45000" engine_power="6.8" engine_volume="0.05" mass="70" capacity="2"/>
+    <Vehicle name="Мотоцикл Урал" cost="50000" engine_power="32" engine_volume="0.125" mass="340" capacity="2"/>
+    <Vehicle name="Daewoo Matiz" cost="200000" engine_power="63" engine_volume="0.995" mass="770" capacity="4"/>
+    <Vehicle name="ВАЗ-2114" cost="180000" engine_power="81.6" engine_volume="1.596" mass="985" capacity="5"/>
+    <Vehicle name="Hyundai Solaris" cost="550000" engine_power="123" engine_volume="1.6" mass="1110" capacity="5"/>
+    <Vehicle name="BMW M5" cost="5490000" engine_power="560" engine_volume="4.4" mass="1945" capacity="5"/>
+    <Vehicle name="Nissan Qashqai" cost="1029000" engine_power="144" engine_volume="2" mass="1535" capacity="5"/>
+    <Vehicle name="Toyota Land Cruiser Prado" cost="1929000" engine_power="144" engine_volume="4" mass="1835" capacity="7"/>
+    <Vehicle name="ГАЗ-22171" cost="792000" engine_power="110" engine_volume="2.3" mass="2370" capacity="10"/>
+    <!--bus-->
+    <!--truck-->
 </DataSet>
