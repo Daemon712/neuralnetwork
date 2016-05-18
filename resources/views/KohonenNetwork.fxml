@@ -2,10 +2,13 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.canvas.Canvas?>
 <GridPane prefHeight="800.0" prefWidth="800.0" hgap="20" vgap="20" style="-fx-padding: 20px"
-            xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ru.foobarbaz.neuralnetwork.som.gui.KohonenNetworkController">
+          xmlns="http://javafx.com/javafx/8"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="ru.foobarbaz.neuralnetwork.som.gui.KohonenNetworkController">
 
     <!--форма ввода данных-->
     <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0" hgap="10" vgap="10">
@@ -52,5 +55,18 @@
                GridPane.columnSpan="2" GridPane.rowIndex="0"
                style="-fx-font-size: 18pt; -fx-font-weight: bold;"/>
         <Label text="Здесь должна быть карта кахонена"/>
+        <Label text="Свойство" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+        <ComboBox fx:id="propertyComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1" >
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Цена"/>
+                    <String fx:value="Мощность двигателя"/>
+                    <String fx:value="Объем двигателя"/>
+                    <String fx:value="Масса"/>
+                    <String fx:value="Вместимость"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Canvas fx:id="canvasField" width="250" height="250"></Canvas>
     </VBox>
 </GridPane>

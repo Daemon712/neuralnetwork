@@ -74,6 +74,10 @@ public class Visual2DSomTest {
 
         return images;
     }
+    private BufferedImage drawKohonen(){
+
+        return null;
+    }
 
     private BufferedImage drawCanvas(){
         BufferedImage canvas = new BufferedImage(imageSize, imageSize,  BufferedImage.TYPE_INT_RGB);

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -101,7 +102,7 @@ public class KohonenLearningController {
 
     private void showNetworkWindow(SelfOrganizingMap som) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/KohonenNetwork.fxml"));
-        Parent root = loader.load();
+        GridPane root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         KohonenNetworkController controller = loader.getController();
