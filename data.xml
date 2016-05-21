@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DataSet>
     <Vehicle name="Мопед Дельта" cost="20000" engine_power="5" engine_volume="0.05" mass="60" capacity="1"/>
+    <Vehicle name="Мопед Honda" cost="22000" engine_power="5.5" engine_volume="0.05" mass="68" capacity="1"/>
     <Vehicle name="Мотороллер Муравей" cost="35000" engine_power="11" engine_volume="0.2" mass="240" capacity="3"/>
-    <Vehicle name="Скутер Suzuki Sepia" cost="45000" engine_power="6.8" engine_volume="0.05" mass="70" capacity="2"/>
+    <Vehicle name="Скутер Suzuki" cost="45000" engine_power="6.8" engine_volume="0.05" mass="70" capacity="2"/>
+    <Vehicle name="Скутер Racer" cost="42000" engine_power="6.1" engine_volume="0.05" mass="73" capacity="2"/>
     <Vehicle name="Мотоцикл Урал" cost="50000" engine_power="32" engine_volume="0.125" mass="340" capacity="2"/>
+    <Vehicle name="Мотоцикл Ява" cost="48000" engine_power="28" engine_volume="0.125" mass="350" capacity="2"/>
     <Vehicle name="Daewoo Matiz" cost="200000" engine_power="63" engine_volume="0.995" mass="770" capacity="4"/>
+    <Vehicle name="Hyundai Getz" cost="250000" engine_power="48" engine_volume="1.086" mass="750" capacity="4"/>
     <Vehicle name="ВАЗ-2114" cost="180000" engine_power="81.6" engine_volume="1.596" mass="985" capacity="5"/>
+    <Vehicle name="ВАЗ-2110" cost="165000" engine_power="79.5" engine_volume="1.596" mass="992" capacity="5"/>
     <Vehicle name="Hyundai Solaris" cost="550000" engine_power="123" engine_volume="1.6" mass="1110" capacity="5"/>
+    <Vehicle name="Kia Rio" cost="560000" engine_power="121" engine_volume="1.6" mass="1201" capacity="5"/>
     <Vehicle name="BMW M5" cost="5490000" engine_power="560" engine_volume="4.4" mass="1945" capacity="5"/>
+    <Vehicle name="Mercedes CLS class" cost="4520000" engine_power="190" engine_volume="3" mass="2300" capacity="5"/>
     <Vehicle name="Nissan Qashqai" cost="1029000" engine_power="144" engine_volume="2" mass="1535" capacity="5"/>
     <Vehicle name="Toyota Land Cruiser Prado" cost="1929000" engine_power="144" engine_volume="4" mass="1835" capacity="7"/>
+    <Vehicle name="Range Rover Sport S" cost="2950000" engine_power="375" engine_volume="5" mass="2147" capacity="7"/>
     <Vehicle name="ГАЗ-22171" cost="792000" engine_power="110" engine_volume="2.3" mass="2370" capacity="10"/>
-    <!--bus-->
-    <!--truck-->
+    <Vehicle name="Ford Transit" cost="1400000" engine_power="155" engine_volume="2.2" mass="2370" capacity="23"/>
+    <Vehicle name="Автобус MAN Lion Star" cost="18000000" engine_power="410" engine_volume="12" mass="18000" capacity="120"/>
+    <Vehicle name="Автобус Ikarus E91" cost="1800000" engine_power="258" engine_volume="8" mass="9200" capacity="34"/>
+    <Vehicle name="Камаз 5490" cost="4000000" engine_power="440" engine_volume="12" mass="7900" capacity="2"/>
 </DataSet>
