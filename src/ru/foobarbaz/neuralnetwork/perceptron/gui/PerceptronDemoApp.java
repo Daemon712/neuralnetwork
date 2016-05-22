@@ -6,13 +6,13 @@ import ru.foobarbaz.neuralnetwork.perceptron.logic.DigitTeacher;
 import javax.swing.*;
 import java.awt.*;
 
-public class PerceptronApp extends JPanel {
+public class PerceptronDemoApp extends JPanel {
     private Perceptron perceptron;
 
-    public PerceptronApp() {
+    public PerceptronDemoApp() {
         super(new GridLayout(1, 1));
         initNetwork();
-        JComponent processPanel = new ProcessPanel(perceptron);
+        JComponent processPanel = new PerceptronDemoPanel(perceptron);
         add(processPanel);
         setPreferredSize(new Dimension(800, 600));
     }
@@ -27,7 +27,7 @@ public class PerceptronApp extends JPanel {
         trySetLookAndFeel();
         JFrame frame = new JFrame("Neural Network");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.add(new PerceptronApp(), BorderLayout.CENTER);
+        frame.add(new PerceptronDemoApp(), BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }

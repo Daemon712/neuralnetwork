@@ -9,13 +9,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 
-public class ProcessPanel extends JPanel implements ActionListener {
+public class PerceptronDemoPanel extends JPanel implements ActionListener {
 
     private JLabel outputLabel;
     private DrawPixelsPanel drawPixelsPanel;
     private Perceptron perceptron;
 
-    public ProcessPanel(Perceptron perceptron) {
+    public PerceptronDemoPanel(Perceptron perceptron) {
         this.perceptron = perceptron;
 
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
