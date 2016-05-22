@@ -6,30 +6,14 @@ import ru.foobarbaz.neuralnetwork.perceptron.logic.DigitTeacher;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainPanel extends JPanel {
-    private JTabbedPane tabbedPane;
+public class PerceptronApp extends JPanel {
     private Perceptron perceptron;
 
-    public MainPanel() {
+    public PerceptronApp() {
         super(new GridLayout(1, 1));
         initNetwork();
-        tabbedPane = new JTabbedPane();
-
-        //TODO
-//        JComponent filePanel = null;
-//        tabbedPane.addTab("File", null, filePanel, null);
-//        tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
-
         JComponent processPanel = new ProcessPanel(perceptron);
-        tabbedPane.addTab("Process", null, processPanel, null);
-
-        //TODO
-//        JComponent studyPanel = null;
-//        tabbedPane.addTab("Study", null, studyPanel, null);
-//        tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
-
-        tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-        add(tabbedPane);
+        add(processPanel);
         setPreferredSize(new Dimension(800, 600));
     }
 
@@ -43,7 +27,7 @@ public class MainPanel extends JPanel {
         trySetLookAndFeel();
         JFrame frame = new JFrame("Neural Network");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.add(new MainPanel(), BorderLayout.CENTER);
+        frame.add(new PerceptronApp(), BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }
