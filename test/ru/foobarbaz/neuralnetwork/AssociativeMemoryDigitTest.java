@@ -45,7 +45,8 @@ public class AssociativeMemoryDigitTest {
     public void testProcess() throws Exception {
         double[] result = perceptron.process(digit);
         for (int i = 0; i < result.length; i++) {
-            Assert.assertTrue(Math.abs(digit[i] - result[i]) < 0.01);
+            double error = Math.abs(digit[i] - result[i]);
+            Assert.assertTrue("Error = " + error, error < 0.1);
         }
     }
 }

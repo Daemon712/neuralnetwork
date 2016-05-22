@@ -95,7 +95,7 @@ public class DigitAssociateTeacher {
     };
 
     public static Perceptron studyPerceptron(int eras){
-        Perceptron perceptron = new PerceptronImpl(35, 25, 15, 5, 15, 25, 35);
+        Perceptron perceptron = new PerceptronImpl(35, 20, 35);
         for (int i = 0; i < eras; i++) {
             for (double[] digit : DIGITS) {
                 perceptron.study(digit, digit);

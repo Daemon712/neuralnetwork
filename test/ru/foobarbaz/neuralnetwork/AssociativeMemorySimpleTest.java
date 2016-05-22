@@ -31,8 +31,8 @@ public class AssociativeMemorySimpleTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        perceptron = new PerceptronImpl(8, 5, 3, 5, 8);
-        for (int i = 0; i < 1000; i++) {
+        perceptron = new PerceptronImpl(8, 4, 4, 8);
+        for (int i = 0; i < 10000; i++) {
             for (Object[] objects : data()) {
                 double[] d = (double[]) objects[0];
                 perceptron.study(d, d);
@@ -52,7 +52,8 @@ public class AssociativeMemorySimpleTest {
         System.out.println("Input: " + Arrays.toString(data));
         System.out.println("Output: " + Arrays.toString(result));
         for (int i = 0; i < result.length; i++) {
-            Assert.assertTrue(Math.abs(data[i] - result[i]) < 0.01);
+            double error = Math.abs(data[i] - result[i]);
+            Assert.assertTrue("Error = " + error, error < 0.1);
         }
     }
 }
