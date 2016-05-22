@@ -30,7 +30,7 @@ public class PerceptronImpl implements Perceptron {
         double[] errors = new double[actualOutput.length];
         int outputLayerNum=neurons.length-1;
         for (int i = 0; i < errors.length; i++) {
-            errors[i] =(expectedOutput[i]- actualOutput[i])*getDerValues(2,i);
+            errors[i] =(expectedOutput[i]- actualOutput[i])*getDerValues(outputLayerNum,i);
             this.errors[outputLayerNum][i]=errors[i];
             double[] inputLinks=weights[outputLayerNum-1][i];
             for(int j=0;j<inputLinks.length;j++){
@@ -39,19 +39,19 @@ public class PerceptronImpl implements Perceptron {
             }
         }
         int countOfLayers=neurons.length-1;
-        for(int k=0;k<countOfLayers;k++){
+        for(int k=countOfLayers-1;k>0;k--){
             double[] middleLayer=neurons[k];
             for(int i=0;i<middleLayer.length;i++){
                 double errorSum=0;
 
-                for(int j=0;j<neurons[2].length;j++){
-                    errorSum += weights[1][j][i]*this.errors[2][j];
+                for(int j=0;j<neurons[k+1].length;j++){
+                    errorSum += weights[k][j][i]*this.errors[k+1][j];
                 }
-                double error=errorSum*getDerValues(1,i);
+                double error=errorSum*getDerValues(k,i);
                 this.errors[k][i]=error;
-                for(int j=0; j<neurons[0].length;j++){
-                    double weightDelta=error*neurons[0][j] * STUDYING_POWER;
-                    weights[0][i][j]=weights[0][i][j]+weightDelta;
+                for(int j=0; j<neurons[k-1].length;j++){
+                    double weightDelta=error*neurons[k-1][j] * STUDYING_POWER;
+                    weights[k-1][i][j]=weights[k-1][i][j]+weightDelta;
                 }
             }
         }
