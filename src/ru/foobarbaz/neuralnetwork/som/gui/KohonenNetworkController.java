@@ -80,6 +80,7 @@ public class KohonenNetworkController {
             }
         }
         double max=dataSet.stream().mapToDouble(f).max().getAsDouble();
+        double min=dataSet.stream().mapToDouble(f).min().getAsDouble();
         int cols=(int)Math.ceil(selfOrganizingMap.getClusters()/Math.floor(Math.sqrt(selfOrganizingMap.getClusters())));
         int rows=(int)Math.ceil((double)selfOrganizingMap.getClusters()/cols);
         int num=-1;
@@ -88,15 +89,17 @@ public class KohonenNetworkController {
             for (int j=0;j<cols;j++){
                 if(cols*i+j>=selfOrganizingMap.getClusters())
                     break;
-                double color=max*0.2;
-                if(clusteredList.get(++num)!=null)
-                    color=(int)(clusteredList.
+                double color=0;
+                if(clusteredList.get(++num)!=null){
+                    color=(clusteredList.
                             get(num).
                             stream().
                             mapToDouble(f).
                             average().
                             getAsDouble());
-                graphicsContext.setFill(Color.rgb(234, 46, 161, color/max));
+                    color=(color-min)/(max-min);
+                }
+                graphicsContext.setFill(Color.rgb(234, 46, 161,color));
                 graphicsContext.fillRect(j*50,i*50,50,50);
                 graphicsContext.strokeRect(j*50,i*50,50,50);
                 graphicsContext.save();
