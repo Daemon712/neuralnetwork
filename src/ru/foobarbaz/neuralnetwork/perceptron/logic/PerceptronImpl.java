@@ -28,28 +28,34 @@ public class PerceptronImpl implements Perceptron {
         double[] actualOutput = process(input);
 
         double[] errors = new double[actualOutput.length];
+        int outputLayerNum=neurons.length-1;
         for (int i = 0; i < errors.length; i++) {
             errors[i] =(expectedOutput[i]- actualOutput[i])*getDerValues(2,i);
-            this.errors[2][i]=errors[i];
-            double[] inputLinks=weights[1][i];
+            this.errors[outputLayerNum][i]=errors[i];
+            double[] inputLinks=weights[outputLayerNum-1][i];
             for(int j=0;j<inputLinks.length;j++){
-                double weightDelta=errors[i]*neurons[1][j]* STUDYING_POWER;
-                weights[1][i][j]=weights[1][i][j]+weightDelta;
+                double weightDelta=errors[i]*neurons[outputLayerNum-1][j]* STUDYING_POWER;
+                weights[outputLayerNum-1][i][j]=weights[outputLayerNum-1][i][j]+weightDelta;
             }
         }
-        double[] middleLayer=neurons[1];
-        for(int i=0;i<middleLayer.length;i++){
-            double errorSum=0;
+        int countOfLayers=neurons.length-1;
+        for(int k=0;k<countOfLayers;k++){
+            double[] middleLayer=neurons[k];
+            for(int i=0;i<middleLayer.length;i++){
+                double errorSum=0;
 
-            for(int j=0;j<neurons[2].length;j++){
-                errorSum += weights[1][j][i]*this.errors[2][j];
-            }
-            double error=errorSum*getDerValues(1,i);
-            for(int j=0; j<neurons[0].length;j++){
-                double weightDelta=error*neurons[0][j] * STUDYING_POWER;
-                weights[0][i][j]=weights[0][i][j]+weightDelta;
+                for(int j=0;j<neurons[2].length;j++){
+                    errorSum += weights[1][j][i]*this.errors[2][j];
+                }
+                double error=errorSum*getDerValues(1,i);
+                this.errors[k][i]=error;
+                for(int j=0; j<neurons[0].length;j++){
+                    double weightDelta=error*neurons[0][j] * STUDYING_POWER;
+                    weights[0][i][j]=weights[0][i][j]+weightDelta;
+                }
             }
         }
+
     }
 
     private double getDerValues(int layer, int neuron){
