@@ -1,23 +1,15 @@
 package ru.foobarbaz.neuralnetwork.som.gui;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.StageStyle;
-import ru.foobarbaz.neuralnetwork.function.distance.DistanceFunction;
 import ru.foobarbaz.neuralnetwork.som.logic.SelfOrganizingMap;
 import ru.foobarbaz.neuralnetwork.som.model.Vehicle;
 
@@ -48,11 +40,8 @@ public class KohonenNetworkController {
         graphicsContext=canvasField.getGraphicsContext2D();
         initClustersField(getClusteredList());
         canvasField.setHeight(((int)Math.ceil(selfOrganizingMap.getClusters()/Math.floor(Math.sqrt(selfOrganizingMap.getClusters())))+1)*50);
-        propertyComboBox.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                drawKohonen(getClusteredList(), newValue);
-            }
+        propertyComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            drawKohonen(getClusteredList(), newValue);
         });
     }
     private void initClustersField(Map<Integer, List<Vehicle>> list){

@@ -42,17 +42,14 @@
     </GridPane>
 
     <!--список кластеров и их состав-->
-    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0"   >
-        <Label text="Кластеры"
-               GridPane.columnSpan="2" GridPane.rowIndex="0"
-               style="-fx-font-size: 18pt; -fx-font-weight: bold;"/>
-        <GridPane fx:id="clusters" ></GridPane>
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+        <Label text="Кластеры" style="-fx-font-size: 18pt; -fx-font-weight: bold;"/>
+        <GridPane fx:id="clusters"/>
     </VBox>
 
     <!--карта кахонена-->
-    <VBox GridPane.rowIndex="1" GridPane.columnSpan="2">
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="1">
         <Label text="Карта кахонена"
-               GridPane.columnSpan="2" GridPane.rowIndex="0"
                style="-fx-font-size: 18pt; -fx-font-weight: bold;"/>
         <Label text="Свойство" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
         <ComboBox fx:id="propertyComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1" >
@@ -66,6 +63,6 @@
                 </FXCollections>
             </items>
         </ComboBox>
-        <Canvas fx:id="canvasField" width="550" height="550"></Canvas>
+        <Canvas fx:id="canvasField" width="600" height="600"/>
     </VBox>
 </GridPane>
