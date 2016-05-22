@@ -58,6 +58,16 @@ public class PerceptronImpl implements Perceptron {
 
     }
 
+    @Override
+    public int getLayers() {
+        return neurons.length;
+    }
+
+    @Override
+    public double[] getNeurons(int layer) {
+        return neurons[layer].clone();
+    }
+
     private double getDerValues(int layer, int neuron){
         double sum=0;
         double[] inputLinks=weights[layer-1][neuron];
