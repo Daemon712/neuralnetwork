@@ -36,7 +36,7 @@ public class KohonenNetworkController {
     @FXML private TextField capacityField;
     @FXML private ComboBox<String> propertyComboBox;
     @FXML private Canvas canvasField;
-    @FXML private VBox clusters;
+    @FXML private GridPane clusters;
 
     private SelfOrganizingMap selfOrganizingMap;
     private List<Vehicle> dataSet;
@@ -47,6 +47,7 @@ public class KohonenNetworkController {
         this.dataSet = dataSet;
         graphicsContext=canvasField.getGraphicsContext2D();
         initClustersField(getClusteredList());
+        canvasField.setHeight(((int)Math.ceil(selfOrganizingMap.getClusters()/Math.floor(Math.sqrt(selfOrganizingMap.getClusters())))+1)*50);
         propertyComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -55,13 +56,17 @@ public class KohonenNetworkController {
         });
     }
     private void initClustersField(Map<Integer, List<Vehicle>> list){
+        clusters.getChildren().clear();
+        int col=0;
         for (Map.Entry<Integer, List<Vehicle>> e: list.entrySet()) {
             Label l=new Label("Кластер "+e.getKey()+":");
             l.setUnderline(true);
-            clusters.getChildren().add(l);
+            clusters.add(l,col,0);
+            int row=1;
             for(Vehicle v:e.getValue()){
-                clusters.getChildren().add(new Label(v.getName()));
+                clusters.add(new Label(v.getName()), col, row++);
             }
+            col++;
         }
 
     }
@@ -131,6 +136,9 @@ public class KohonenNetworkController {
             vehicle.setMass(Integer.parseInt(massField.getText()));
             vehicle.setCapacity(Integer.parseInt(capacityField.getText()));
             dataSet.add(vehicle);
+            initClustersField(getClusteredList());
+            if(propertyComboBox.getValue()!=null)
+                drawKohonen(getClusteredList(), propertyComboBox.getValue());
         } catch (RuntimeException ex){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initStyle(StageStyle.UTILITY);
