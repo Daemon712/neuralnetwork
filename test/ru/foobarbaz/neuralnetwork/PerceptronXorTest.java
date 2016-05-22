@@ -22,7 +22,7 @@ public class PerceptronXorTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        perceptron = new PerceptronImpl(new int[]{2, 3, 1});
+        perceptron = new PerceptronImpl(2, 3, 1);
         for (int i = 0; i < 10000; i++) {
             for (Object[] params : data()) {
                 double[] input = (double[]) params[0];
