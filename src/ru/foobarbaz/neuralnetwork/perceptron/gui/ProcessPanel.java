@@ -84,22 +84,9 @@ public class ProcessPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        double[] input = convertData();
+        double[] input = drawPixelsPanel.getData();
         double[] output = perceptron.process(input);
         outputLabel.setText(formatOutput(output));
-    }
-
-    private double[] convertData() {
-        boolean[][] boolData = drawPixelsPanel.getData();
-        double[] doubleData = new double[boolData.length * boolData[0].length];
-
-        int index = 0;
-        for (boolean[] row : boolData) {
-            for (boolean cell : row) {
-                doubleData[index++] = cell ? 1 : 0;
-            }
-        }
-        return doubleData;
     }
 
     private String formatOutput(double[] output){
