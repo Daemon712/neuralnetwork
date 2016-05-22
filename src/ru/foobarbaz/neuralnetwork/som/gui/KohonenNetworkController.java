@@ -9,9 +9,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.StageStyle;
@@ -26,7 +28,6 @@ import java.util.Map;
 import java.util.function.ToDoubleFunction;
 
 public class KohonenNetworkController {
-    @FXML private GridPane mapPane;
     @FXML private TextField nameField;
     @FXML private TextField costField;
     @FXML private TextField powerField;
@@ -35,6 +36,7 @@ public class KohonenNetworkController {
     @FXML private TextField capacityField;
     @FXML private ComboBox<String> propertyComboBox;
     @FXML private Canvas canvasField;
+    @FXML private VBox clusters;
 
     private SelfOrganizingMap selfOrganizingMap;
     private List<Vehicle> dataSet;
@@ -44,6 +46,7 @@ public class KohonenNetworkController {
         this.selfOrganizingMap = selfOrganizingMap;
         this.dataSet = dataSet;
         graphicsContext=canvasField.getGraphicsContext2D();
+        initClustersField(getClusteredList());
         propertyComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -51,7 +54,17 @@ public class KohonenNetworkController {
             }
         });
     }
+    private void initClustersField(Map<Integer, List<Vehicle>> list){
+        for (Map.Entry<Integer, List<Vehicle>> e: list.entrySet()) {
+            Label l=new Label("Кластер "+e.getKey()+":");
+            l.setUnderline(true);
+            clusters.getChildren().add(l);
+            for(Vehicle v:e.getValue()){
+                clusters.getChildren().add(new Label(v.getName()));
+            }
+        }
 
+    }
     private void drawKohonen(Map<Integer, List<Vehicle>> clusteredList, String prop) {
         ToDoubleFunction<Vehicle> f;
         switch (prop){

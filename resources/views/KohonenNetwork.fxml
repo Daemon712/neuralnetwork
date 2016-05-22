@@ -42,11 +42,10 @@
     </GridPane>
 
     <!--список кластеров и их состав-->
-    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="clusters"   >
         <Label text="Кластеры"
                GridPane.columnSpan="2" GridPane.rowIndex="0"
                style="-fx-font-size: 18pt; -fx-font-weight: bold;"/>
-        <Label text="Здесь должен быть список кластеров и их состав"/>
     </VBox>
 
     <!--карта кахонена-->
