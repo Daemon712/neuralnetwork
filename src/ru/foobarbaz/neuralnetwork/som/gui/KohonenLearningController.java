@@ -65,6 +65,7 @@ public class KohonenLearningController {
 
     private List<Vehicle> loadDataFromFile() throws JAXBException{
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("."));
         File file = fileChooser.showOpenDialog(null);
         if (file == null || !file.exists() || !file.isFile()){
             throw new RuntimeException();

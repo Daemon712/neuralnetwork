@@ -6,7 +6,7 @@ public class DigitTeacher {
     private Perceptron perceptron;
 
     public DigitTeacher() {
-        perceptron = new PerceptronImpl(new int[]{15, 12, 10});
+        perceptron = new PerceptronImpl(15, 12, 10);
         initInputSet();
         initExceptedSet();
     }

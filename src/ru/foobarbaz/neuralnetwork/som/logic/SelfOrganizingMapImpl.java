@@ -16,8 +16,8 @@ public class SelfOrganizingMapImpl implements SelfOrganizingMap {
     private int inputParams;
     private List<Neuron> neurons;
     private DistanceFunction distanceFunction;
-    private Function<Double, Double> studyingSpeedFunction = new HyperbolicFunction(1, 1);
-    private Function<Double, Double> neighborhoodFunction = new GaussianFunction(0.5, 0);
+    private Function<Double, Double> studyingSpeedFunction = new HyperbolicFunction(0.5, 0.5);
+    private Function<Double, Double> neighborhoodFunction = new GaussianFunction(0.2, -0.25);
     private int studyingEra = 0;
 
     public SelfOrganizingMapImpl(DistanceFunction distanceFunction, int inputParams, int clusters) {

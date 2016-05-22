@@ -10,7 +10,7 @@ public class PerceptronImpl implements Perceptron {
     private double[][] errors;
     private Function<Double, Double> activateFunction = new SigmoidFunction();
 
-    public PerceptronImpl(int[] neuronsOnLayers){
+    public PerceptronImpl(int... neuronsOnLayers){
         if (neuronsOnLayers.length < 2) {
             throw new IllegalArgumentException("Requires two layers, at least");
         }
