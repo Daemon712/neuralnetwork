@@ -10,10 +10,10 @@ import static ru.foobarbaz.neuralnetwork.common.NormalizeHelper.*;
 @XmlRootElement(name = "Vehicle")
 public class Vehicle {
     private static final int MIN_COST = 20000, MAX_COST = 20000000;
-    private static final float MIN_POWER = 3, MAX_POWER = 1200;
-    private static final float MIN_VOLUME = 0.05f, MAX_VOLUME = 20000000;
-    private static final int MIN_MASS = 60, MAX_MASS = 40000;
-    private static final int MIN_CAPACITY = 1, MAX_CAPACITY = 200;
+    private static final float MIN_POWER = 3, MAX_POWER = 1000;
+    private static final float MIN_VOLUME = 0.05f, MAX_VOLUME = 12;
+    private static final int MIN_MASS = 60, MAX_MASS = 10000;
+    private static final int MIN_CAPACITY = 1, MAX_CAPACITY = 100;
 
     private String name;
     private int cost;

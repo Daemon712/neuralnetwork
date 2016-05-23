@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DataSet>
     <Vehicle name="Мопед Дельта" cost="20000" engine_power="5" engine_volume="0.05" mass="60" capacity="1"/>
-    <Vehicle name="Мопед Honda" cost="22000" engine_power="5.5" engine_volume="0.05" mass="68" capacity="1"/>
-    <Vehicle name="Мотороллер Муравей" cost="35000" engine_power="11" engine_volume="0.2" mass="240" capacity="3"/>
     <Vehicle name="Скутер Suzuki" cost="45000" engine_power="6.8" engine_volume="0.05" mass="70" capacity="2"/>
     <Vehicle name="Скутер Racer" cost="42000" engine_power="6.1" engine_volume="0.05" mass="73" capacity="2"/>
     <Vehicle name="Мотоцикл Урал" cost="50000" engine_power="32" engine_volume="0.125" mass="340" capacity="2"/>
@@ -18,9 +16,11 @@
     <Vehicle name="Nissan Qashqai" cost="1029000" engine_power="144" engine_volume="2" mass="1535" capacity="5"/>
     <Vehicle name="Toyota Land Cruiser Prado" cost="1929000" engine_power="144" engine_volume="4" mass="1835" capacity="7"/>
     <Vehicle name="Range Rover Sport S" cost="2950000" engine_power="375" engine_volume="5" mass="2147" capacity="7"/>
-    <Vehicle name="ГАЗ-22171" cost="792000" engine_power="110" engine_volume="2.3" mass="2370" capacity="10"/>
-    <Vehicle name="Ford Transit" cost="1400000" engine_power="155" engine_volume="2.2" mass="2370" capacity="23"/>
-    <Vehicle name="Автобус MAN Lion Star" cost="18000000" engine_power="410" engine_volume="12" mass="18000" capacity="120"/>
-    <Vehicle name="Автобус Ikarus E91" cost="1800000" engine_power="258" engine_volume="8" mass="9200" capacity="34"/>
+    <Vehicle name="ГАЗ-22171" cost="900000" engine_power="110" engine_volume="2.3" mass="2830" capacity="10"/>
+    <Vehicle name="Ford Transit" cost="1400000" engine_power="155" engine_volume="2.2" mass="2670" capacity="23"/>
+    <Vehicle name="Автобус MAN Lion Star" cost="3000000" engine_power="410" engine_volume="12" mass="10000" capacity="100"/>
+    <Vehicle name="Автобус Ikarus E91" cost="2800000" engine_power="358" engine_volume="9" mass="9200" capacity="34"/>
     <Vehicle name="Камаз 5490" cost="4000000" engine_power="440" engine_volume="12" mass="7900" capacity="2"/>
+    <Vehicle name="Bugatti Veyron" cost="20000000" engine_power="1000" engine_volume="8" mass="2200" capacity="2"/>
+    <Vehicle name="Lamborghini Aventador" cost="18000000" engine_power="800" engine_volume="6.9" mass="1600" capacity="2"/>
 </DataSet>
