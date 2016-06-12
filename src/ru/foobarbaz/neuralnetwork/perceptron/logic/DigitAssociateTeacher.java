@@ -95,13 +95,20 @@ public class DigitAssociateTeacher {
     };
 
     public static Perceptron studyPerceptron(int eras){
-        Perceptron perceptron = new PerceptronImpl(35, 20, 35);
+        int neurons = DIGITS[0].length;
+        int bottleneck = (int)(Math.log(DIGITS.length) / Math.log(2));
+        int hidden = bottleneck + (neurons - bottleneck) / 2;
+        Perceptron perceptron = new PerceptronImpl(neurons, hidden, bottleneck, hidden, neurons);
+        studyPerceptron(perceptron, eras);
+        return perceptron;
+    }
+
+    public static void studyPerceptron(Perceptron perceptron, int eras){
         for (int i = 0; i < eras; i++) {
             for (double[] digit : DIGITS) {
                 perceptron.study(digit, digit);
             }
         }
-        return perceptron;
     }
 
     public static double[] getDigit(int digit){
