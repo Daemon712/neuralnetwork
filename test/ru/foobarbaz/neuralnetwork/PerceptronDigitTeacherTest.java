@@ -21,7 +21,7 @@ public class PerceptronDigitTeacherTest {
     @BeforeClass
     public static void setUp() throws Exception {
         DigitTeacher teacher = new DigitTeacher();
-        teacher.study(1000);
+        teacher.study(10000);
         perceptron = teacher.getPerceptron();
     }
 

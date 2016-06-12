@@ -4,7 +4,7 @@ import ru.foobarbaz.neuralnetwork.function.SigmoidFunction;
 import java.util.function.Function;
 
 public class PerceptronImpl implements Perceptron {
-    private static final double STUDYING_POWER = 3;
+    private static final double STUDYING_POWER = 0.1;
     protected double[][][] weights;
     protected double[][] neurons;
     private double[][] errors;

@@ -19,7 +19,7 @@ public class PerceptronDemoApp extends JPanel {
 
     private void initNetwork(){
         DigitTeacher teacher = new DigitTeacher();
-        teacher.study(1000);
+        teacher.study(10000);
         perceptron = teacher.getPerceptron();
     }
 
